@@ -22,14 +22,14 @@ This role needs sudo package allready installed.
 Role Variables
 --------------
 
-h3. APT configuration
+### APT configuration
 
 Theses variables define hostname to configure APT (normal repo and backports):
 
   - dbs\_debian\_backport\_host
   - dbs\_apt\_default\_host
 
-h3. System configuration
+### System configuration
 
   - dbs\_hostname: system hostname
   - dbs\_default\_locale: default system locale
@@ -37,11 +37,11 @@ h3. System configuration
   - dbs\_timezone: system timezone
   - dbs\_sysctl\_config: list of kernel parameters, see: [default/main.yml]
 
-h3. NTPd
+### NTPd
 
   - dbs\_ntp\_host: hostname of NTP server. Don't prepend with "0.", "1."...
 
-h3. User
+### User
 
   - dbs\_users: list of user
 
@@ -52,7 +52,7 @@ Each row have few keys:
   - sudo: boolean (true = can sudo)
 
 
-h3. Readonly vars
+### Readonly vars
 
   - dbs\_packages:
   - dbs\_hostname\_files:
@@ -67,6 +67,8 @@ A description of the settable variables for this role should go here, including 
 TODO
 ----
 
+  - Deploy to Ansible Galaxy
+  - Add travis IC
   - Manage syslog daemons: rsyslog, syslog-ng...
   - Uninstall systemd (Jessie)
   - Support Devuan
