@@ -1,0 +1,5 @@
+---
+
+- name: TEMPLATE | Deploy OpenNTPd configuration file
+  template: src=etc/openntpd/ntpd.conf.j2 dest=/etc/openntpd/ntpd.conf
+  notify: restart openntpd

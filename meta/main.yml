@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Emilien Mantel
+  description:
+  company:
+  license: GPLv2
+  min_ansible_version: 1.9
+  platforms:
+  - name: Debian
+    versions:
+    - wheezy
+    - jessie
+  categories:
+  - networking
+  - packaging
+  - system
+dependencies: []
+

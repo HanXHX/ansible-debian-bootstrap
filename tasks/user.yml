@@ -1,0 +1,16 @@
+---
+
+- name: USER | Add system users
+  user: name={{ item.name }} shell={{ item.shell | default('/bin/bash') }} comment={{ item.comment | default('') }}
+  with_items: dbs_users
+
+- name: AUTHORIZED_KEY | Install SSH public key to system users
+  authorized_key: user="{{ item.0.name }}" key="{{ item.1 }}"
+  with_subelements:
+    - dbs_users
+    - ssh_keys
+  when: item.1 is defined
+
+- name: TEMPLATE | Create sudoers file
+  template: src=etc/sudoers.d/ansible dest=/etc/sudoers.d/ansible
+

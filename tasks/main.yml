@@ -1,0 +1,18 @@
+---
+
+- name: INCLUDE_VARS | Related to Debian version
+  include_vars: "{{ ansible_distribution_release }}.yml"
+
+- include: hostname.yml
+
+- include: user.yml
+
+- include: apt.yml
+
+- include: timezone.yml
+
+- include: locale.yml
+
+- include: services.yml
+
+- include: system.yml

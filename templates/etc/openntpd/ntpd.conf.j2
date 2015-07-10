@@ -1,0 +1,13 @@
+#
+# {{ ansible_managed }}
+#
+
+# Addresses to listen on (ntpd does not listen by default)
+#listen on 127.0.0.1
+#listen on ::1
+
+# See http://support.ntp.org/bin/view/Servers/NTPPoolServers
+servers 0.{{ dbs_ntp_host }}
+servers 1.{{ dbs_ntp_host }}
+servers 2.{{ dbs_ntp_host }}
+servers 3.{{ dbs_ntp_host }}

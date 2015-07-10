@@ -1,0 +1,8 @@
+#
+# {{ ansible_managed }}
+#
+
+{% for i in dbs_users %}
+{{ i.name }} ALL=(ALL) NOPASSWD: ALL
+{% endfor %}
+

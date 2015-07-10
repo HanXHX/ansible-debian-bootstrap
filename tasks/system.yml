@@ -1,0 +1,23 @@
+---
+
+- name: UPDATE-ALTERNATIVE | Vim is my main editor
+  alternatives: name=editor path=/usr/bin/vim.basic
+
+- name: UPDATE-ALTERNATIVE | Gawk (GNU awk) is the best
+  alternatives: name=awk path=/usr/bin/gawk
+
+- name: LOCALE | Add
+  locale_gen: name={{ item }} state=present
+  with_items: dbs_locales
+
+- name: COPY | dotfiles for root
+  copy: src={{ item }} dest=/root/.{{ item }}
+  with_items:
+    - bashrc
+    - vimrc
+    - screenrc
+
+- name: SYSCTL | Tuning
+  sysctl: name={{ item.key }} value='{{ item.value }}' sysctl_file=/etc/sysctl.d/ansible.conf state=present
+  with_items: dbs_sysctl_config
+
