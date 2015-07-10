@@ -54,15 +54,10 @@ Each row have few keys:
 
 ### Readonly vars
 
-  - dbs\_packages:
-  - dbs\_hostname\_files:
-  - dbs\_microcode\_apt\_distribution:
-  - dbs\_distro\_packages:
-
-
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
+  - dbs\_packages: list of packages to install
+  - dbs\_hostname\_files: list of file where we should substitute bad hostname
+  - dbs\_microcode\_apt\_distribution: location of package to install microcode
+  - dbs\_distro\_packages: list specific package to install (related to debian version)
 
 TODO
 ----
