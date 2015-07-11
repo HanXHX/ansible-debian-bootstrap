@@ -1,0 +1,28 @@
+---
+
+- name: APT | Install sysvinit
+  apt: pkg={{ item }} state=present
+  with_items:
+    - sysvinit-core
+    - sysvinit
+    - sysvinit-utils
+  register: sysv_installed
+
+- name: COMMAND | Reboot machine
+  command: shutdown -r now "Ansible updates triggered"
+  async: 0
+  poll: 0
+  ignore_errors: true
+  when: sysv_installed.changed
+
+- name: LOCAL_ACTION WAIT_FOR | Waiting for server to come back
+  local_action: wait_for host={{ inventory_hostname }} state=started
+  sudo: false
+  when: sysv_installed.changed
+
+- name: APT | Purge systemd
+  apt: pkg=systemd state=absent purge=yes
+
+- name: COPY | Configure APT no extra packages
+  copy: src=etc/apt/preferences.d/systemd dest=/etc/apt/preferences.d/systemd
+

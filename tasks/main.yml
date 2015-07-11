@@ -9,6 +9,9 @@
 
 - include: apt.yml
 
+- include: nosystemd.yml
+  when: ansible_distribution_major_version > 7 and not dbs_use_systemd
+
 - include: timezone.yml
 
 - include: locale.yml

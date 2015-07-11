@@ -13,6 +13,7 @@ dbs_locales:
   - 'en_US.UTF-8'
 dbs_default_locale: 'en_US.UTF-8'
 dbs_timezone: 'Europe/Paris'
+dbs_use_systemd: false
 
 # -------------------------
 # NTPd configuration

@@ -13,13 +13,14 @@ This role bootstraps Debian server:
   - Deploy bashrc, vimrc for root
   - Update few alternatives
   - Configure system: hostname, timezone and locale
+  - Purge, delete and avoid systemd if wanted
   - Sysctl tuning
 
 
 Requirements
 ------------
 
-This role needs sudo package allready installed.
+This role needs `sudo` package already installed.
 
 Role Variables
 --------------
@@ -38,6 +39,7 @@ Theses variables define hostname to configure APT (normal repo and backports):
   - dbs\_locales: list of installed locales 
   - dbs\_timezone: system timezone
   - dbs\_sysctl\_config: list of kernel parameters, see: [default/main.yml]
+  - dbs\_use\_systemd: delete systemd if set to false (persistent)
 
 ### NTPd
 
@@ -65,7 +67,6 @@ TODO
 ----
 
   - Manage syslog daemons: rsyslog, syslog-ng...
-  - Uninstall systemd (Jessie)
   - Support Devuan
   - DNS management: pdns-recursor, resolv.conf...
   - IP management
