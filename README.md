@@ -64,8 +64,6 @@ Each row have few keys:
 TODO
 ----
 
-  - Deploy to Ansible Galaxy
-  - Add travis IC
   - Manage syslog daemons: rsyslog, syslog-ng...
   - Uninstall systemd (Jessie)
   - Support Devuan
