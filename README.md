@@ -1,8 +1,6 @@
 Ansible Debian bootstrap
 ========================
 
-[![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
-
 This role bootstraps Debian server:
 
   - Configure APT (sources.list)
