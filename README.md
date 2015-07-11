@@ -29,25 +29,25 @@ Role Variables
 
 Theses variables define hostname to configure APT (normal repo and backports):
 
-  - dbs\_debian\_backport\_host
-  - dbs\_apt\_default\_host
+  - `dbs_debian_backport_host`
+  - `dbs_apt_default_host`
 
 ### System configuration
 
-  - dbs\_hostname: system hostname
-  - dbs\_default\_locale: default system locale
-  - dbs\_locales: list of installed locales 
-  - dbs\_timezone: system timezone
-  - dbs\_sysctl\_config: list of kernel parameters, see: [default/main.yml]
-  - dbs\_use\_systemd: delete systemd if set to false (persistent)
+  - `dbs_hostname`: system hostname
+  - `dbs_default_locale`: default system locale
+  - `dbs_locales`: list of installed locales 
+  - `dbs_timezone`: system timezone
+  - `dbs_sysctl_config: list of kernel parameters, see`: [default/main.yml]
+  - `dbs_use_systemd`: delete systemd if set to false (persistent)
 
 ### NTPd
 
-  - dbs\_ntp\_host: hostname of NTP server. Don't prepend with "0.", "1."...
+  - `dbs_ntp_host`: hostname of NTP server. Don't prepend with "0.", "1."...
 
 ### User
 
-  - dbs\_users: list of user
+  - `dbs_users`: list of user
 
 Each row have few keys:
 
@@ -58,10 +58,10 @@ Each row have few keys:
 
 ### Readonly vars
 
-  - dbs\_packages: list of packages to install
-  - dbs\_hostname\_files: list of file where we should substitute bad hostname
-  - dbs\_microcode\_apt\_distribution: location of package to install microcode
-  - dbs\_distro\_packages: list specific package to install (related to debian version)
+  - `dbs_packages`: list of packages to install
+  - `dbs_hostname_files`: list of file where we should substitute bad hostname
+  - `dbs_microcode_apt_distribution`: location of package to install microcode
+  - `dbs_distro_packages`: list specific package to install (related to debian version)
 
 TODO
 ----
