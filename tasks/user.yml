@@ -9,7 +9,6 @@
   with_subelements:
     - dbs_users
     - ssh_keys
-  when: item.1 is defined
 
 - name: TEMPLATE | Create sudoers file
   template: src=etc/sudoers.d/ansible dest=/etc/sudoers.d/ansible
