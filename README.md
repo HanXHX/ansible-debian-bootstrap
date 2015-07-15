@@ -34,7 +34,7 @@ Theses variables define hostname to configure APT (normal repo and backports):
 
   - `dbs_hostname`: system hostname
   - `dbs_default_locale`: default system locale
-  - `dbs_locales`: list of installed locales 
+  - `dbs_locales`: list of installed locales
   - `dbs_timezone`: system timezone
   - `dbs_sysctl_config: list of kernel parameters, see`: [default/main.yml]
   - `dbs_use_systemd`: delete systemd if set to false (persistent)
@@ -49,9 +49,10 @@ Theses variables define hostname to configure APT (normal repo and backports):
 
 Each row have few keys:
 
-  - name: username on system
-  - shell: default is /bin/bash
-  - sudo: boolean (true = can sudo)
+  - `name`: username on system
+  - `shell`: default is /bin/bash
+  - `sudo`: boolean (true = can sudo)
+  - `ssh_keys`: list of ssh public keys
 
 
 ### Readonly vars
