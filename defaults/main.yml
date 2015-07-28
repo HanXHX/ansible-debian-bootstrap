@@ -2,7 +2,6 @@
 # APT configuration
 # -------------------------
 # See: http://http.debian.net/
-dbs_debian_backport_host: "httpredir.debian.org"
 dbs_apt_default_host: "httpredir.debian.org"
 dbs_apt_use_src: false
 dbs_apt_components: "main contrib non-free"

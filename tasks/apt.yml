@@ -11,18 +11,18 @@
   file: path=/etc/apt/sources.list state=absent
 
 - name: APT | Add repositories
-  apt_repository: repo="deb {{ item }} {{ dbs_apt_components }}" state=present
+  apt_repository: repo="deb http://{{ dbs_apt_default_host }}/debian {{ item }} {{ dbs_apt_components }}" state=present
   with_items:
-    - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}"
-    - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates"
-    - "http://{{ dbs_debian_backport_host }}/debian {{ ansible_distribution_release }}-backports"
+    - "{{ ansible_distribution_release }}"
+    - "{{ ansible_distribution_release }}-updates"
+    - "{{ ansible_distribution_release }}-backports"
 
 - name: APT | Add src repositories
-  apt_repository: repo="deb-src {{ item }} {{ dbs_apt_components }}" state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
+  apt_repository: repo="deb-src http://{{ dbs_apt_default_host }}/debian {{ item }} {{ dbs_apt_components }}" state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
   with_items:
-    - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}"
-    - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates"
-    - "http://{{ dbs_debian_backport_host }}/debian {{ ansible_distribution_release }}-backports"
+    - "{{ ansible_distribution_release }}"
+    - "{{ ansible_distribution_release }}-updates"
+    - "{{ ansible_distribution_release }}-backports"
 
 - name: APT | Install few packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
