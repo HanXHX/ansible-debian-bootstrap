@@ -10,7 +10,7 @@
 - include: apt.yml
 
 - include: nosystemd.yml
-  when: ansible_distribution_major_version > 7 and not dbs_use_systemd
+  when: (ansible_distribution_major_version | version_compare(7, 'gt')) and (not dbs_use_systemd)
 
 - include: timezone.yml
 
