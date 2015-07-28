@@ -6,6 +6,7 @@ This role bootstraps Debian server:
   - Configure APT (sources.list)
   - Install minimal packages (vim, htop...)
   - Install Intel/AMD microcode if needed
+  - Install and configure Local DNS with [Unbound](https://www.unbound.net). Feature in beta-test!
   - Install and configure [OpenNTPd](http://www.openntpd.org/)
   - Add user with SSH key, sudoers
   - Deploy bashrc, vimrc for root
@@ -38,6 +39,7 @@ Theses variables define hostname to configure APT (normal repo and backports):
   - `dbs_timezone`: system timezone
   - `dbs_sysctl_config: list of kernel parameters, see`: [default/main.yml]
   - `dbs_use_systemd`: delete systemd if set to false (persistent)
+  - `dbs_use_unbound`: configure Local DNS and manage network (default is false)
 
 ### NTPd
 

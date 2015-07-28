@@ -13,3 +13,6 @@
 
 - name: locale-gen
   command: locale-gen
+
+- name: reload networking
+  action: service name=networking state=reloaded
