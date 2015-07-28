@@ -10,20 +10,19 @@
 - name: FILE | Delete default repository (sources.list)
   file: path=/etc/apt/sources.list state=absent
 
-- name: APT | Add Debian repository
-  apt_repository: repo='deb http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }} main contrib non-free' state=present
+- name: APT | Add repositories
+  apt_repository: repo="deb {{ item }} {{ dbs_apt_components }}" state=present
+  with_items:
+    - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}"
+    - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates"
+    - "http://{{ dbs_debian_backport_host }}/debian {{ ansible_distribution_release }}-backports"
 
-- name: APT | Add Debian repository (src)
-  apt_repository: repo='deb-src http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }} main contrib non-free' state=present
-
-- name: APT | Add Debian-updates repository
-  apt_repository: repo='deb http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates main contrib non-free' state=present
-
-- name: APT | Add Debian-updates repository (src)
-  apt_repository: repo='deb-src http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates main contrib non-free' state=present
-
-- name: APT | Add Backports repository
-  apt_repository: repo='deb http://{{ dbs_debian_backport_host }}/debian {{ ansible_distribution_release }}-backports main' state=present
+- name: APT | Add src repositories
+  apt_repository: repo="deb-src {{ item }} {{ dbs_apt_components }}" state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
+  with_items:
+    - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}"
+    - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates"
+    - "http://{{ dbs_debian_backport_host }}/debian {{ ansible_distribution_release }}-backports"
 
 - name: APT | Install few packages
   apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
