@@ -25,15 +25,15 @@
     - "{{ ansible_distribution_release }}-backports"
 
 - name: APT | Install few packages
-  apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+  apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
   with_flattened:
     - dbs_packages
     - dbs_distro_packages
 
 - name: APT | Install Intel Microcode if needed
-  apt: pkg=intel-microcode state=latest default_release='{{ dbs_microcode_apt_distribution }}'
+  apt: pkg=intel-microcode state=present default_release='{{ dbs_microcode_apt_distribution }}'
   when: ansible_processor[0].find('Intel') != -1 and ansible_architecture == 'x86_64'
 
 - name: APT | Install AMD Microcode if needed
-  apt: pkg=amd64-microcode  state=latest default_release='{{ dbs_microcode_apt_distribution }}'
+  apt: pkg=amd64-microcode  state=present default_release='{{ dbs_microcode_apt_distribution }}'
   when: ansible_processor[0].find('AMD') != -1 and ansible_architecture == 'x86_64'
