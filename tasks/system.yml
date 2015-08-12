@@ -16,6 +16,7 @@
     - bashrc
     - vimrc
     - screenrc
+  when: dbs_use_dotfiles
 
 - name: SYSCTL | Tuning
   sysctl: name={{ item.key }} value='{{ item.value }}' sysctl_file=/etc/sysctl.d/ansible.conf state=present
