@@ -19,6 +19,12 @@ dbs_use_unbound: false
 dbs_use_dotfiles: true
 
 # -------------------------
+# Alternatives 
+# -------------------------
+dbs_alternative_editor: '/usr/bin/vim.basic'
+dbs_alternative_awk: '/usr/bin/gawk'
+
+# -------------------------
 # NTPd configuration
 # -------------------------
 dbs_ntp_host: "fr.pool.ntp.org"

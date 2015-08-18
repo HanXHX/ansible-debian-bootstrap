@@ -1,10 +1,10 @@
 ---
 
 - name: UPDATE-ALTERNATIVE | Vim is my main editor
-  alternatives: name=editor path=/usr/bin/vim.basic
+  alternatives: name=editor path={{ dbs_alternative_editor }}
 
 - name: UPDATE-ALTERNATIVE | Gawk (GNU awk) is the best
-  alternatives: name=awk path=/usr/bin/gawk
+  alternatives: name=awk path={{ dbs_alternative_awk }}
 
 - name: LOCALE | Add
   locale_gen: name={{ item }} state=present

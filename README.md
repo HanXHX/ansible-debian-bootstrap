@@ -44,6 +44,11 @@ Theses variables define hostname to configure APT (normal repo and backports):
   - `dbs_use_unbound`: configure Local DNS and manage network (default is false)
   - `dbs_use_dotfiles`: overwrite root dotfiles (bashrc, screenrc, vimrc)
 
+### Alternatives
+
+  - `dbs_alternative_editor`
+  - `dbs_alternative_awk`
+
 ### NTPd
 
   - `dbs_ntp_host`: hostname of NTP server. Don't prepend with "0.", "1."...
