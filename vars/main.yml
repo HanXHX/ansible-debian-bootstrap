@@ -20,6 +20,7 @@ dbs_packages:
   - nmap
   - nmon
   - openntpd
+  - pv
   - python-pip
   - pwgen
   - reptyr
