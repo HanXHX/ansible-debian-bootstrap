@@ -1,5 +1,4 @@
 dbs_packages:
-  - atop
   - bmon
   - cpanminus
   - curl
