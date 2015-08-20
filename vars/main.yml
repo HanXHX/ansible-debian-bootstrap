@@ -34,7 +34,7 @@ dbs_packages:
   - vim
 
 dbs_hostname_files:
-  - /etc/exim4/update-exim4.conf.conf
+  - /etc/exim4/update-exim4.conf
   - /etc/printcap
   - /etc/hostname
   - /etc/hosts
