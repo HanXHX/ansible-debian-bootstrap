@@ -19,6 +19,10 @@
   when: dbs_use_dotfiles
 
 - name: SYSCTL | Tuning
-  sysctl: name={{ item.key }} value='{{ item.value }}' sysctl_file=/etc/sysctl.d/ansible.conf state=present
+  sysctl: >
+    name={{ item.key }}
+    value='{{ item.value }}'
+    sysctl_file=/etc/sysctl.d/ansible.conf
+    state=present
   with_items: dbs_sysctl_config
 

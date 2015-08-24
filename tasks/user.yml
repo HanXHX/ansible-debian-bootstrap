@@ -1,7 +1,10 @@
 ---
 
 - name: USER | Add system users
-  user: name={{ item.name }} shell={{ item.shell | default('/bin/bash') }} comment={{ item.comment | default('') }}
+  user: >
+    name={{ item.name }}
+    shell={{ item.shell | default('/bin/bash') }}
+    comment={{ item.comment | default('') }}
   with_items: dbs_users
 
 - name: AUTHORIZED_KEY | Install SSH public key to system users
