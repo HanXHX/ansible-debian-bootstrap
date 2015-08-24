@@ -4,6 +4,7 @@
   include_vars: "{{ ansible_distribution_release }}.yml"
 
 - include: hostname.yml
+  when: dbs_set_hostname
 
 - include: user.yml
 
@@ -16,9 +17,12 @@
   when: (ansible_distribution_major_version | version_compare(7, 'gt')) and (not dbs_use_systemd)
 
 - include: timezone.yml
+  when: dbs_set_timezone
 
 - include: locale.yml
+  when: dbs_set_locale
 
-- include: services.yml
+- include: ntp.yml
+  when: dbs_set_ntp
 
 - include: system.yml

@@ -33,6 +33,13 @@ Theses variables define hostname to configure APT (normal repo and backports):
   - `dbs_apt_use_src`: install "deb-src" repositories (default: false)
   - `dbs_apt_components`: components uses in sources.list (default: "main contrib non-free")
 
+### Role setup
+
+- `dbs_set_hostname`: if true, change hostname
+- `dbs_set_locales`: if true, configure locales
+- `dbs_set_timezone`: if true, set timezone
+- `dbs_set_ntp`: if true, install and configure OpenNTPd
+
 ### System configuration
 
   - `dbs_hostname`: system hostname

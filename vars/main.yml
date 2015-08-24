@@ -19,7 +19,6 @@ dbs_packages:
   - netcat
   - nmap
   - nmon
-  - openntpd
   - pv
   - python-pip
   - pwgen

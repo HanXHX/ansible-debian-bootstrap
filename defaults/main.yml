@@ -19,6 +19,14 @@ dbs_use_unbound: false
 dbs_use_dotfiles: true
 
 # -------------------------
+# Role setup
+# -------------------------
+dbs_set_hostname: true
+dbs_set_locales: true
+dbs_set_timezone: true
+dbs_set_ntp: true
+
+# -------------------------
 # Alternatives 
 # -------------------------
 dbs_alternative_editor: '/usr/bin/vim.basic'
