@@ -19,7 +19,6 @@
   with_items:
     - "{{ ansible_distribution_release }}"
     - "{{ ansible_distribution_release }}-updates"
-    - "{{ ansible_distribution_release }}-backports"
 
 - name: APT | Add src repositories
   apt_repository: >
@@ -28,7 +27,16 @@
   with_items:
     - "{{ ansible_distribution_release }}"
     - "{{ ansible_distribution_release }}-updates"
-    - "{{ ansible_distribution_release }}-backports"
+
+- name: APT | Add backports repository
+  apt_repository: >
+    repo="deb http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
+    state=present
+
+- name: APT | Add src backports repository
+  apt_repository: >
+    repo="deb-src http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
+    state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
 
 - name: APT | Install few packages
   apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
