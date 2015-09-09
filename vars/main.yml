@@ -28,6 +28,7 @@ dbs_packages:
   - screen
   - strace
   - sudo
+  - swaks
   - sysstat
   - tcpdump
   - vim
