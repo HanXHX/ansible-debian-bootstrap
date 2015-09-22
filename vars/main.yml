@@ -1,4 +1,5 @@
 dbs_packages:
+  - apt-transport-https
   - bmon
   - cpanminus
   - curl
