@@ -32,6 +32,7 @@ dbs_packages:
   - swaks
   - sysstat
   - tcpdump
+  - unzip
   - vim
 
 dbs_hostname_files:
