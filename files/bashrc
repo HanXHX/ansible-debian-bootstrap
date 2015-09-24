@@ -6,7 +6,7 @@ umask 022
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
-if [ ! -f /etc/bash_completion.d/git-prompt ] ;
+if [ -z "$(type __git_ps 2> /dev/null)" ] ;
 then
 	alias __git_ps1=''
 fi
