@@ -7,6 +7,7 @@ dbs_packages:
   - cron-apt
   - debconf-utils
   - debian-goodies
+  - dnsutils
   - gawk
   - gnupg
   - git
