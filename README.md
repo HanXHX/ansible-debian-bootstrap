@@ -1,6 +1,8 @@
 Ansible Debian bootstrap
 ========================
 
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/list#/roles/4348)
+
 This role bootstraps Debian server:
 
   - Configure APT (sources.list)
