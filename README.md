@@ -105,7 +105,12 @@ Example Playbook
 About TravisCI
 --------------
 
-Due to Docker limitations, we can't check removing systemd, setting hostname, configure ubound.
+Due to Docker limitations, we can't check:
+
+  - removing systemd
+  - setting hostname
+  - setting locales
+  - configure ubound.
 
 
 License
