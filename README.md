@@ -101,6 +101,13 @@ Example Playbook
       roles:
          - { role: HanXHX.debian_bootstrap }
 
+
+About TravisCI
+--------------
+
+Due to Docker limitations, we can't check removing systemd and setting hostname.
+
+
 License
 -------
 
