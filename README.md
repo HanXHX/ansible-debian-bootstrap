@@ -1,7 +1,7 @@
 Ansible Debian bootstrap
 ========================
 
-[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/list#/roles/4348)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/list#/roles/4348) [![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
 
 This role bootstraps Debian server:
 
@@ -100,6 +100,19 @@ Example Playbook
     - hosts: servers
       roles:
          - { role: HanXHX.debian_bootstrap }
+
+
+About TravisCI
+--------------
+
+Due to Docker limitations, we can't check:
+
+  - removing systemd
+  - setting hostname
+  - setting locales
+  - configure ubound
+  - configure sysctl
+
 
 License
 -------
