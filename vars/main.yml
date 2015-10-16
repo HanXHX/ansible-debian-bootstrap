@@ -4,6 +4,7 @@ dbs_packages:
   - bmon
   - cpanminus
   - curl
+  - cron
   - cron-apt
   - debconf-utils
   - debian-goodies
