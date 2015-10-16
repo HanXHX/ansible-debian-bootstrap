@@ -2,7 +2,6 @@
 
 - hosts: all
   vars:
-    dbs_use_unbound: true
     dbs_set_hostname: false
     dbs_use_systemd: true
     dbs_users:
