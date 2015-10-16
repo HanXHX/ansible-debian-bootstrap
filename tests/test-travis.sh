@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Thanks to https://servercheck.in/blog/testing-ansible-roles-travis-ci-github
 
