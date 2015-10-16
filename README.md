@@ -110,7 +110,8 @@ Due to Docker limitations, we can't check:
   - removing systemd
   - setting hostname
   - setting locales
-  - configure ubound.
+  - configure ubound
+  - configure sysctl
 
 
 License
