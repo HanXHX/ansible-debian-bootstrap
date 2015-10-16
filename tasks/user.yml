@@ -14,5 +14,8 @@
     - ssh_keys
 
 - name: TEMPLATE | Create sudoers file
-  template: src=etc/sudoers.d/ansible.j2 dest=/etc/sudoers.d/ansible
+  template: >
+    src=etc/sudoers.d/ansible.j2
+    dest=/etc/sudoers.d/ansible
+    mode=0440
 
