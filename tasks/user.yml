@@ -11,7 +11,7 @@
     name={{ item.name }}
     shell={{ item.shell | default('/bin/bash') }}
     comment={{ item.comment | default('') }}
-    group={{ item.group | default(item.name) }}
+    group={{ item.group | default('') }}
     groups={{ item.groups | default('') }}
     home={{ item.home | default('/home/' + item.name) }}
     createhome={{ item.createhome | default('yes') }}
