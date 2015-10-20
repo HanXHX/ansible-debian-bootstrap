@@ -38,9 +38,10 @@ dbs_alternative_awk: '/usr/bin/gawk'
 dbs_ntp_host: "fr.pool.ntp.org"
 
 # -------------------------
-# Users
+# Users/Groups
 # -------------------------
 dbs_users: []
+dbs_groups: []
 
 # -------------------------
 # Sysctl
