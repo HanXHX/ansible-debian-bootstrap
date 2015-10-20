@@ -10,7 +10,7 @@ This role bootstraps Debian server:
   - Install Intel/AMD microcode if needed
   - Install and configure Local DNS with [Unbound](https://www.unbound.net). Feature in beta-test!
   - Install and configure [OpenNTPd](http://www.openntpd.org/)
-  - Add user with SSH key, sudoers
+  - Add groups, users with SSH key, sudoers
   - Deploy bashrc, vimrc for root
   - Update few alternatives
   - Configure system: hostname, timezone and locale
@@ -62,17 +62,36 @@ Theses variables define hostname to configure APT (normal repo and backports):
 
   - `dbs_ntp_host`: hostname of NTP server. Don't prepend with "0.", "1."...
 
+### Group
+
+  - `dbs_groups`: list of group
+
+Each row have few keys:
+
+  - `name`: (M) username on system
+  - `system`: (O) yes/no (default: no)
+
+(M) Mandatory
+(O) Optionnal
+
 ### User
 
   - `dbs_users`: list of user
 
 Each row have few keys:
 
-  - `name`: username on system
-  - `shell`: default is /bin/bash
-  - `sudo`: boolean (true = can sudo)
-  - `ssh_keys`: list of ssh public keys
+  - `name`: (M) username on system
+  - `shell`: (O) default is /bin/bash
+  - `comment`: (O) default is an empty string
+  - `sudo`: (O) boolean (true = can sudo)
+  - `group`: (O) main group (default is `name` without password)
+  - `groups`: (O) comma separated list of groups
+  - `createhome`: (O) yes/no
+  - `system`: (O) yes/no (default: no)
+  - `ssh_keys`: (O) list of ssh public keys
 
+(M) Mandatory
+(O) Optionnal
 
 ### Readonly vars
 

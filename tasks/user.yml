@@ -1,10 +1,21 @@
 ---
 
-- name: USER | Add system users
+- name: USER | Add groups to the system
+  group: >
+    name={{ item.name }}
+    system={{ item.system | default('no') }}
+  with_items: dbs_groups
+
+- name: USER | Add users to the system
   user: >
     name={{ item.name }}
     shell={{ item.shell | default('/bin/bash') }}
     comment={{ item.comment | default('') }}
+    group={{ item.group | default(item.name) }}
+    groups={{ item.groups | default('') }}
+    home={{ item.home | default('/home/' + item.name) }}
+    createhome={{ item.createhome | default('yes') }}
+    system={{ item.system | default('no') }}
   with_items: dbs_users
   register: u
 
