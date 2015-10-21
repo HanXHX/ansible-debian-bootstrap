@@ -23,6 +23,7 @@ dbs_packages:
   - netcat
   - nmap
   - nmon
+  - ohai
   - pv
   - python-pip
   - pwgen
