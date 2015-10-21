@@ -38,6 +38,10 @@
     repo="deb-src http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
     state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
 
+- name APT | Uninstall packages
+  apt: pkg={{ item }} state=absent
+  with_items: dbs_uninstall_packages
+
 - name: APT | Install few packages
   apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
   with_flattened:

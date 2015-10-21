@@ -52,6 +52,7 @@ Theses variables define hostname to configure APT (normal repo and backports):
   - `dbs_use_systemd`: delete systemd if set to false (persistent)
   - `dbs_use_unbound`: configure Local DNS and manage network (default is false)
   - `dbs_use_dotfiles`: overwrite root dotfiles (bashrc, screenrc, vimrc)
+  - `dbs_uninstall_packages: packages list to uninstall
 
 ### Alternatives
 

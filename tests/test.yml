@@ -3,6 +3,8 @@
 - hosts: all
   vars:
     dbs_use_unbound: true
+    dbs_uninstall_packages:
+      - 'atop'
     dbs_groups:
       - name: 'administrator'
       - name: 'superdaemon '
@@ -20,3 +22,4 @@
         ssh_keys: []
   roles:
     - ../../
+
