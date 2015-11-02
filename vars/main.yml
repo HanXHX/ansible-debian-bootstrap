@@ -12,6 +12,7 @@ dbs_packages:
   - gawk
   - gnupg
   - git
+  - hdparm
   - htop
   - hping3
   - iotop
@@ -26,6 +27,7 @@ dbs_packages:
   - ohai
   - pv
   - python-pip
+  - python-pycurl
   - pwgen
   - reptyr
   - rsyslog
