@@ -8,9 +8,13 @@
 # We MUST update cache... Ansible auto install python-apt
 - name: APT | Update
   apt: update_cache=yes cache_valid_time=3600
+  async: 600
+  poll: 0
 
 - name: FILE | Delete default repository (sources.list)
   file: path=/etc/apt/sources.list state=absent
+  async: 600
+  poll: 0
 
 - name: APT | Add repositories
   apt_repository: >
@@ -19,6 +23,8 @@
   with_items:
     - "{{ ansible_distribution_release }}"
     - "{{ ansible_distribution_release }}-updates"
+  async: 600
+  poll: 0
 
 - name: APT | Add src repositories
   apt_repository: >
@@ -27,31 +33,45 @@
   with_items:
     - "{{ ansible_distribution_release }}"
     - "{{ ansible_distribution_release }}-updates"
+  async: 600
+  poll: 0
 
 - name: APT | Add backports repository
   apt_repository: >
     repo="deb http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
     state=present
+  async: 600
+  poll: 0
 
 - name: APT | Add src backports repository
   apt_repository: >
     repo="deb-src http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
     state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
+  async: 600
+  poll: 0
 
 - name: APT | Uninstall packages
   apt: pkg={{ item }} state=absent
   with_items: dbs_uninstall_packages
+  async: 600
+  poll: 0
 
 - name: APT | Install few packages
   apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
   with_flattened:
     - dbs_packages
     - dbs_distro_packages
+  async: 600
+  poll: 0
 
 - name: APT | Install Intel Microcode if needed
   apt: pkg=intel-microcode state=present default_release='{{ dbs_microcode_apt_distribution }}'
   when: ansible_processor[0].find('Intel') != -1 and ansible_architecture == 'x86_64'
+  async: 600
+  poll: 0
 
 - name: APT | Install AMD Microcode if needed
   apt: pkg=amd64-microcode  state=present default_release='{{ dbs_microcode_apt_distribution }}'
   when: ansible_processor[0].find('AMD') != -1 and ansible_architecture == 'x86_64'
+  async: 600
+  poll: 0
