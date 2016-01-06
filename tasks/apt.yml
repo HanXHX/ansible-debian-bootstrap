@@ -28,6 +28,16 @@
     - "{{ ansible_distribution_release }}"
     - "{{ ansible_distribution_release }}-updates"
 
+- name: APT | Add security repository
+  apt_repository: >
+    repo="deb http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ dbs_apt_components }}"
+    state=present
+
+- name: APT | Add src security repository
+  apt_repository: >
+    repo="deb-src http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ dbs_apt_components }}"
+    state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
+
 - name: APT | Add backports repository
   apt_repository: >
     repo="deb http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
