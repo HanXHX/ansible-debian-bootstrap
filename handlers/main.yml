@@ -1,15 +1,15 @@
 ---
 - name: restart openntpd
-  action: service name=openntpd state=restarted enabled=yes
+  service: name=openntpd state=restarted
 
 - name: restart openntpd
-  action: service name=ntp state=restarted enabled=yes
+  service: name=ntp state=restarted
 
 - name: restart cron
-  action: service name=cron state=restarted enabled=yes
+  service: name=cron state=restarted
 
 - name: restart rsyslog
-  action: service name=rsyslog state=restarted enabled=yes
+  service: name=rsyslog state=restarted
 
 - name: update tzdata
   command: dpkg-reconfigure -f noninteractive tzdata
@@ -18,4 +18,4 @@
   command: locale-gen
 
 - name: reload networking
-  action: service name=networking state=reloaded
+  service: name=networking state=reloaded
