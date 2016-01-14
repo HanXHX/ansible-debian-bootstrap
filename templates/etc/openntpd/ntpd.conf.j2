@@ -7,7 +7,6 @@
 #listen on ::1
 
 # See http://support.ntp.org/bin/view/Servers/NTPPoolServers
-servers 0.{{ dbs_ntp_host }}
-servers 1.{{ dbs_ntp_host }}
-servers 2.{{ dbs_ntp_host }}
-servers 3.{{ dbs_ntp_host }}
+{% for h in dbs_ntp_hosts %}
+servers {{ h }}
+{% endfor %}

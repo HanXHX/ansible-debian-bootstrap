@@ -36,7 +36,12 @@ dbs_alternative_awk: '/usr/bin/gawk'
 # -------------------------
 # NTPd configuration
 # -------------------------
-dbs_ntp_host: "fr.pool.ntp.org"
+dbs_ntp_hosts:
+  - '0.europe.pool.ntp.org'
+  - '1.europe.pool.ntp.org'
+  - '2.europe.pool.ntp.org'
+  - '3.europe.pool.ntp.org'
+dbs_ntp_pkg: 'ntp'
 
 # -------------------------
 # Users/Groups

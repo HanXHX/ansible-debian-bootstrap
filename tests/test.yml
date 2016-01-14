@@ -20,6 +20,7 @@
         shell: '/usr/sbin/nologin'
         sudo: false
         ssh_keys: []
+    dbs_ntp_pkg: 'ntp'
   roles:
     - ../../
 

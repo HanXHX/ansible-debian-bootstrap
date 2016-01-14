@@ -62,6 +62,7 @@ Theses variables define hostname to configure APT (normal repo and backports):
 ### NTPd
 
   - `dbs_ntp_host`: hostname of NTP server. Don't prepend with "0.", "1."...
+  - `dbs_ntp_pkg`: package used to provide NTP: "openntpd" or "ntp"
 
 ### Group
 
