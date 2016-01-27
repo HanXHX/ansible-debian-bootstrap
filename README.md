@@ -30,8 +30,7 @@ Role Variables
 
 Theses variables define hostname to configure APT (normal repo and backports):
 
-- `dbs_debian_backport_host`
-- `dbs_apt_default_host`
+- `dbs_apt_default_host`: repository host. It can replace the last one (installed with this role) with a new one
 - `dbs_apt_use_src`: install "deb-src" repositories (default: false)
 - `dbs_apt_components`: components uses in sources.list (default: "main contrib non-free")
 

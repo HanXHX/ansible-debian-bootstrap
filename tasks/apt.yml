@@ -12,41 +12,49 @@
 - name: FILE | Delete default repository (sources.list)
   file: path=/etc/apt/sources.list state=absent
 
-- name: APT | Add repositories
+- name: SET_FACT | Aggregate all repositories
+  set_fact:
+    dbs_repo_new:
+      - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }} {{ dbs_apt_components }}"
+      - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates {{ dbs_apt_components }}"
+      - "http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ dbs_apt_components }}"
+      - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
+
+- name: APT_REPOSITORY | Delete old repo
   apt_repository: >
-    repo="deb http://{{ dbs_apt_default_host }}/debian {{ item }} {{ dbs_apt_components }}"
+    repo="{{ item[1] }} {{ item[0] }}"
+    state=absent
+  when: >
+    ansible_local.apt_sources.dbs_repo_old is defined and
+    item[0] not in dbs_repo_new
+  with_nested:
+    - ansible_local.apt_sources.dbs_repo_old
+    - [ 'deb', 'deb-src' ]
+
+- name: APT_REPOSITORY | Add repositories
+  apt_repository: >
+    repo="deb {{ item }}"
     state=present
-  with_items:
-    - "{{ ansible_distribution_release }}"
-    - "{{ ansible_distribution_release }}-updates"
+    update_cache=no
+  register: ar
+  with_items: dbs_repo_new
 
-- name: APT | Add src repositories
+- name: APT_REPOSITORY | Add src repositories
   apt_repository: >
-    repo="deb-src http://{{ dbs_apt_default_host }}/debian {{ item }} {{ dbs_apt_components }}"
+    repo="deb-src {{ item }}"
     state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
-  with_items:
-    - "{{ ansible_distribution_release }}"
-    - "{{ ansible_distribution_release }}-updates"
+    update_cache=no
+  register: ars
+  with_items: dbs_repo_new
 
-- name: APT | Add security repository
-  apt_repository: >
-    repo="deb http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ dbs_apt_components }}"
-    state=present
+- name: COPY | Manage current repositories
+  copy: >
+    content="{ \"dbs_repo_old\": {{ dbs_repo_new | to_json }} }"
+    dest=/etc/ansible/facts.d/apt_sources.fact
 
-- name: APT | Add src security repository
-  apt_repository: >
-    repo="deb-src http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ dbs_apt_components }}"
-    state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
-
-- name: APT | Add backports repository
-  apt_repository: >
-    repo="deb http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
-    state=present
-
-- name: APT | Add src backports repository
-  apt_repository: >
-    repo="deb-src http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
-    state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
+- name: APT | Update cache if necessary
+  apt: update_cache=yes
+  when: ar.changed or ars.changed
 
 - name: APT | Uninstall packages
   apt: pkg={{ item }} state=absent
@@ -59,9 +67,19 @@
     - dbs_distro_packages
 
 - name: APT | Install Intel Microcode if needed
-  apt: pkg=intel-microcode state=present default_release='{{ dbs_microcode_apt_distribution }}'
-  when: ansible_processor[0].find('Intel') != -1 and ansible_architecture == 'x86_64'
+  apt: >
+    pkg=intel-microcode
+    state=present
+    default_release='{{ dbs_microcode_apt_distribution }}'
+  when: >
+    ansible_processor[0].find('Intel') != -1 and
+    ansible_architecture == 'x86_64'
 
 - name: APT | Install AMD Microcode if needed
-  apt: pkg=amd64-microcode  state=present default_release='{{ dbs_microcode_apt_distribution }}'
-  when: ansible_processor[0].find('AMD') != -1 and ansible_architecture == 'x86_64'
+  apt: >
+    pkg=amd64-microcode
+    state=present
+    default_release='{{ dbs_microcode_apt_distribution }}'
+  when: >
+    ansible_processor[0].find('AMD') != -1 and
+    ansible_architecture == 'x86_64'
