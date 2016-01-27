@@ -3,6 +3,8 @@
 - name: INCLUDE_VARS | Related to Debian version
   include_vars: "{{ ansible_distribution_release }}.yml"
 
+- include: prepare.yml
+
 - include: hostname.yml
   when: dbs_set_hostname
 
