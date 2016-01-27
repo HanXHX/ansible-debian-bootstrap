@@ -7,7 +7,7 @@
       - 'atop'
     dbs_groups:
       - name: 'administrator'
-      - name: 'superdaemon '
+      - name: 'superdaemon'
         system: yes
       - name: 'regis'
         state: 'absent'
