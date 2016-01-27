@@ -72,6 +72,7 @@ Each row have few keys:
 
 - `name`: (M) username on system
 - `system`: (O) yes/no (default: no)
+- `state`: (O) present/absent (default: present)
 
 (M) Mandatory
 (O) Optionnal

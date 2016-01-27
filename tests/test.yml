@@ -9,6 +9,8 @@
       - name: 'administrator'
       - name: 'superdaemon '
         system: yes
+      - name: 'regis'
+        state: 'absent'
     dbs_users:
       - name: 'hanx'
         sudo: true
