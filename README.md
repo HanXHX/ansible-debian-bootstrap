@@ -90,7 +90,7 @@ Each row have few keys:
 - `groups`: (O) comma separated list of groups
 - `createhome`: (O) yes/no
 - `system`: (O) yes/no (default: no)
-- `ssh_keys`: (O) list of ssh public keys
+- `ssh_keys`: (M) list of ssh public keys. If you don't need any SSH key, please provide an empty list.
 
 (M) Mandatory
 (O) Optionnal
