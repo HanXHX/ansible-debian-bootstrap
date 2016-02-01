@@ -1,3 +1,4 @@
 dbs_microcode_apt_distribution: 'jessie'
 dbs_distro_packages:
   - glances
+  - jq
