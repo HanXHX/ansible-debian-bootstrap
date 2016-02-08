@@ -2,11 +2,14 @@
 
 - hosts: all
   vars:
+# --> Travis
     dbs_apt_default_host: 'cloudfront.debian.net'
     dbs_use_unbound: false
     dbs_set_hostname: false
     dbs_set_locale: false
     dbs_use_systemd: true
+    dbs_sysctl_config: []
+# <-- Travis
     dbs_uninstall_packages:
       - 'atop'
     dbs_groups:
