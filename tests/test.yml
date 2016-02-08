@@ -22,6 +22,9 @@
         shell: '/usr/sbin/nologin'
         sudo: false
         ssh_keys: []
+      - name: 'regis'
+        ssh_keys: []
+        state: 'absent'
     dbs_ntp_pkg: 'ntp'
   roles:
     - ../../

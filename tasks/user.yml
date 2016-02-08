@@ -1,12 +1,5 @@
 ---
 
-- name: GROUP | Add groups to the system
-  group: >
-    name={{ item.name }}
-    system={{ item.system | default('no') }}
-    state={{ item.state | default('present') }}
-  with_items: dbs_groups
-
 - name: USER | Add users to the system
   user: >
     name={{ item.name }}
@@ -16,21 +9,32 @@
     home={{ item.home | default('/home/' + item.name) }}
     createhome={{ item.createhome | default('yes') }}
     system={{ item.system | default('no') }}
+    state={{ item.state | default('present') }}
   with_items: dbs_users
   register: u
+
+- name: GROUP | Add groups to the system
+  group: >
+    name={{ item.name }}
+    system={{ item.system | default('no') }}
+    state={{ item.state | default('present') }}
+  with_items: dbs_groups
 
 - name: USER | Add to group
   user: >
     name={{ item.name }}
     group={{ item.group }}
   with_items: dbs_users
-  when: item.group is defined
+  when: >
+    item.group is defined and
+    (item.state is not defined or item.state == 'present')
 
 - name: AUTHORIZED_KEY | Install SSH public key to system users
   authorized_key: user="{{ item.0.name }}" key="{{ item.1 }}"
   with_subelements:
     - dbs_users
     - ssh_keys
+  when: item.0.state is not defined or item.0.state == 'present'
 
 - name: TEMPLATE | Create sudoers file
   template: >
