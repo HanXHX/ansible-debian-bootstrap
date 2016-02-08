@@ -1,5 +1,12 @@
 ---
 
+- name: GROUP | Add groups to the system
+  group: >
+    name={{ item.name }}
+    system={{ item.system | default('no') }}
+  with_items: dbs_groups
+  when: item.state is not defined or item.state == 'present'
+
 - name: USER | Add users to the system
   user: >
     name={{ item.name }}
@@ -13,12 +20,12 @@
   with_items: dbs_users
   register: u
 
-- name: GROUP | Add groups to the system
+- name: GROUP | Delete groups to the system
   group: >
     name={{ item.name }}
-    system={{ item.system | default('no') }}
-    state={{ item.state | default('present') }}
+    state=absent
   with_items: dbs_groups
+  when: item.state is defined and item.state == 'absent'
 
 - name: USER | Add to group
   user: >
