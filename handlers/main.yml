@@ -2,7 +2,7 @@
 - name: restart openntpd
   service: name=openntpd state=restarted
 
-- name: restart openntpd
+- name: restart ntp
   service: name=ntp state=restarted
 
 - name: restart cron

@@ -14,5 +14,5 @@
 
 - name: TEMPLATE | Deploy NTPd configuration file
   template: src=etc/ntp.conf.j2 dest=/etc/ntp.conf
-  notify: restart ntpd
+  notify: restart ntp
   when: dbs_ntp_pkg == 'ntp'
