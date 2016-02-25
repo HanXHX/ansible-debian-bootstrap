@@ -37,6 +37,7 @@ dbs_packages:
   - sudo
   - swaks
   - sysstat
+  - telnet
   - tcpdump
   - unzip
   - vim
