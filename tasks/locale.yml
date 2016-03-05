@@ -2,7 +2,7 @@
 
 - name: LOCALE | Add
   locale_gen: name={{ item }} state=present
-  with_items: dbs_locales
+  with_items: "{{ dbs_locales }}"
 
 - name: TEMPLATE | Deploy default locale
   template: src=etc/default/locale.j2 dest=/etc/default/locale
@@ -10,7 +10,8 @@
 - name: LINEINFILE | Uncomment necessary lines in /etc/locale.gen
   lineinfile: >
     dest=/etc/locale.gen
-    regexp="^# ({{ item }}) (.*)$" line="{{ item }} \1"
+    regexp="^# ({{ item }}) (.*)$"
+    line="{{ item }} \1"
     backrefs=yes
-  with_items: system_locales
+  with_items: "{{ system_locales }}"
   notify: locale-gen

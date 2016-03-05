@@ -29,7 +29,7 @@
     state=present
     update_cache=no
   register: ar
-  with_items: dbs_repo_new
+  with_items: "{{ dbs_repo_new }}"
 
 - name: APT_REPOSITORY | Add src repositories
   apt_repository: >
@@ -37,7 +37,7 @@
     state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
     update_cache=no
   register: ars
-  with_items: dbs_repo_new
+  with_items: "{{ dbs_repo_new }}"
 
 - name: COPY | Manage current repositories
   copy: >
@@ -50,13 +50,13 @@
 
 - name: APT | Uninstall packages
   apt: pkg={{ item }} state=absent
-  with_items: dbs_uninstall_packages
+  with_items: "{{ dbs_uninstall_packages }}"
 
 - name: APT | Install few packages
   apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
   with_flattened:
-    - dbs_packages
-    - dbs_distro_packages
+    - "{{ dbs_packages }}"
+    - "{{ dbs_distro_packages }}"
 
 - name: APT | Install Intel Microcode if needed
   apt: >

@@ -22,7 +22,7 @@
     dest={{ item }}
     regexp='\b{{ ansible_fqdn }}\b'
     replace='{{ dbs_hostname }}'
-  with_items: dbs_hostname_files
+  with_items: "{{ dbs_hostname_files }}"
   ignore_errors: yes
   when: change_hostname.changed
 
@@ -31,7 +31,7 @@
     dest={{ item }}
     regexp='\b{{ ansible_hostname }}\b'
     replace='{{ dbs_hostname | regex_replace('^(\w)\..+$', '\\1') }}'
-  with_items: dbs_hostname_files
+  with_items: "{{ dbs_hostname_files }}"
   ignore_errors: yes
   when: change_hostname.changed
 
