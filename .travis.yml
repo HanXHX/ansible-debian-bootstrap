@@ -14,3 +14,6 @@ install:
 
 script:
   - docker run --name $PLATFORM test-$PLATFORM
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
