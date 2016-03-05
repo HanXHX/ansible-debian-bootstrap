@@ -11,31 +11,41 @@
 - name: INCLUDE_VARS | Related to OS version
   include_vars: "{{ ansible_distribution_release }}.yml"
 
-- include: prepare.yml
+- name: INCLUDE | Prepare system
+  include: prepare.yml
 
-- include: hostname.yml
+- name: INCLUDE | Set hostname
+  include: hostname.yml
   when: dbs_set_hostname
 
-- include: user.yml
+- name: INCLUDE | Manage system users
+  include: user.yml
 
-- include: apt.yml
+- name: INCLUDE | Configure APT
+  include: apt.yml
 
-- include: unbound.yml
+- name: INCLUDE | Configure DNS cache
+  include: unbound.yml
   when: dbs_use_unbound
 
-- include: nosystemd.yml
+- name: INCLUDE | Kick systemd
+  include: nosystemd.yml
   when: >
     ansible_distribution == 'Debian' and
     ansible_distribution_major_version | version_compare(7, 'gt') and
     not dbs_use_systemd
 
-- include: timezone.yml
+- name: INCLUDE | Set timezone
+  include: timezone.yml
   when: dbs_set_timezone
 
-- include: locale.yml
+- name: INCLUDE | Manage locales
+  include: locale.yml
   when: dbs_set_locale
 
-- include: ntp.yml
+- name: INCLUDE | Install NTP damon
+  include: ntp.yml
   when: dbs_set_ntp
 
-- include: system.yml
+- name: INCLUDE | Misc system configuration
+  include: system.yml
