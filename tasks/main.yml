@@ -1,6 +1,14 @@
 ---
 
-- name: INCLUDE_VARS | Related to Debian version
+- name: INCLUDE_VARS | Devuan
+  include_vars: devuan.yml
+  when: ansible_distribution == 'Devuan GNU/Linux'
+
+- name: INCLUDE_VARS | Debian
+  include_vars: debian.yml
+  when: ansible_distribution == 'Debian'
+
+- name: INCLUDE_VARS | Related to OS version
   include_vars: "{{ ansible_distribution_release }}.yml"
 
 - include: prepare.yml
@@ -16,7 +24,10 @@
   when: dbs_use_unbound
 
 - include: nosystemd.yml
-  when: (ansible_distribution_major_version | version_compare(7, 'gt')) and (not dbs_use_systemd)
+  when: >
+    ansible_distribution == 'Debian' and
+    ansible_distribution_major_version | version_compare(7, 'gt') and
+    not dbs_use_systemd
 
 - include: timezone.yml
   when: dbs_set_timezone

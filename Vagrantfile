@@ -7,7 +7,8 @@ Vagrant.configure("2") do |config|
 
   vms = [
     [ "debian-wheezy", "deb/wheezy-amd64" , "192.168.33.29" ],
-    [ "debian-jessie", "deb/jessie-amd64", "192.168.33.30" ]
+    [ "debian-jessie", "deb/jessie-amd64", "192.168.33.30" ],
+    [ "devuan-jessie", "http://vagrant.devuan.org/devuan-jessie-amd64-alpha4.box", "192.168.33.31" ]
   ]
 
   config.vm.provider "virtualbox" do |v|
@@ -20,11 +21,18 @@ Vagrant.configure("2") do |config|
       m.vm.box = vm[1]
       m.vm.network "private_network", ip: vm[2]
 
+      if vm[0] == "devuan-jessie"
+          config.ssh.username = "root"
+          config.ssh.password = "devuan"
+          config.vm.guest = :debian
+          config.vm.synced_folder ".", "/vagrant", disabled: true
+      end
+
       m.vm.provision "ansible" do |ansible|
         ansible.playbook = "tests/test.yml"
         ansible.groups = { "test" => [ vm[0] ] }
         ansible.verbose = 'vv'
-				ansible.sudo = true
+        ansible.sudo = true
       end
     end
   end

@@ -12,14 +12,6 @@
 - name: FILE | Delete default repository (sources.list)
   file: path=/etc/apt/sources.list state=absent
 
-- name: SET_FACT | Aggregate all repositories
-  set_fact:
-    dbs_repo_new:
-      - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }} {{ dbs_apt_components }}"
-      - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates {{ dbs_apt_components }}"
-      - "http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ dbs_apt_components }}"
-      - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports main"
-
 - name: APT_REPOSITORY | Delete old repo
   apt_repository: >
     repo="{{ item[1] }} {{ item[0] }}"

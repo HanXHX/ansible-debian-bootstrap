@@ -1,9 +1,9 @@
-Ansible Debian bootstrap
-========================
+Ansible Debian/Devuan bootstrap
+===============================
 
 [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/list#/roles/4348) [![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
 
-This role bootstraps Debian server:
+This role bootstraps Debian/Devuan server:
 
 - Configure APT (sources.list)
 - Install minimal packages (vim, htop...)
@@ -101,7 +101,7 @@ Each row have few keys:
 - `dbs_packages`: list of packages to install
 - `dbs_hostname_files`: list of file where we should substitute bad hostname
 - `dbs_microcode_apt_distribution`: location of package to install microcode
-- `dbs_distro_packages`: list specific package to install (related to debian version)
+- `dbs_distro_packages`: list specific package to install (related to OS version)
 
 Dependencies
 ------------
