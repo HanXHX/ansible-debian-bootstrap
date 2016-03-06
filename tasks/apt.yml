@@ -12,16 +12,19 @@
 - name: FILE | Delete default repository (sources.list)
   file: path=/etc/apt/sources.list state=absent
 
-- name: APT_REPOSITORY | Delete old repo
+- name: APT_REPOSITORY | Delete old deb repo
   apt_repository: >
-    repo="{{ item[1] }} {{ item[0] }}"
+    repo="deb {{ item }}"
     state=absent
-  when: >
-    ansible_local.apt_sources.dbs_repo_old is defined and
-    item[0] not in dbs_repo_new
-  with_nested:
-    - "{{ ansible_local.apt_sources.dbs_repo_old }}"
-    - [ 'deb', 'deb-src' ]
+  when: item not in dbs_repo_new
+  with_items: "{{ dbs_repo_old }}"
+
+- name: APT_REPOSITORY | Delete old deb-src repo
+  apt_repository: >
+    repo="deb-src {{ item }}"
+    state=absent
+  when: item not in dbs_repo_new
+  with_items: "{{ dbs_repo_old }}"
 
 - name: APT_REPOSITORY | Add repositories
   apt_repository: >
