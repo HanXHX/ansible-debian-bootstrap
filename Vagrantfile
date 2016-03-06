@@ -6,8 +6,8 @@
 Vagrant.configure("2") do |config|
 
   vms = [
-    [ "debian-wheezy", "deb/wheezy-amd64" ],
-    [ "debian-jessie", "deb/jessie-amd64" ],
+    [ "debian-wheezy", "debian/wheezy64" ],
+    [ "debian-jessie", "debian/jessie64" ],
     [ "devuan-jessie", "http://vagrant.devuan.org/devuan-jessie-amd64-alpha4.box" ]
   ]
 
@@ -30,7 +30,6 @@ Vagrant.configure("2") do |config|
 
       m.vm.provision "ansible" do |ansible|
         ansible.playbook = "tests/test.yml"
-        ansible.groups = { "test" => [ vm[0] ] }
         ansible.verbose = 'vv'
         ansible.sudo = true
       end
