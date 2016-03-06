@@ -26,6 +26,9 @@
         ssh_keys: []
         state: 'absent'
     dbs_ntp_pkg: 'ntp'
+    dbs_locales:
+      - 'en_US.UTF-8'
+      - 'fr_FR.UTF-8'
   roles:
     - ../../
 

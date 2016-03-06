@@ -20,7 +20,7 @@
     ansible_local.apt_sources.dbs_repo_old is defined and
     item[0] not in dbs_repo_new
   with_nested:
-    - ansible_local.apt_sources.dbs_repo_old
+    - "{{ ansible_local.apt_sources.dbs_repo_old }}"
     - [ 'deb', 'deb-src' ]
 
 - name: APT_REPOSITORY | Add repositories
