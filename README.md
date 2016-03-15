@@ -1,7 +1,7 @@
 Ansible Debian/Devuan bootstrap
 ===============================
 
-[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/list#/roles/4348) [![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) [![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
 
 This role bootstraps Debian/Devuan server:
 
