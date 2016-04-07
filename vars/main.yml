@@ -26,6 +26,7 @@ dbs_packages:
   - nmap
   - nmon
   - ohai
+  - parallel
   - pv
   - python-pip
   - python-pycurl
