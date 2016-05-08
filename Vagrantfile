@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   vms = [
     [ "debian-wheezy", "debian/wheezy64" ],
     [ "debian-jessie", "debian/jessie64" ],
-    [ "devuan-jessie", "http://vagrant.devuan.org/devuan-jessie-amd64-alpha4.box" ]
+    [ "devuan-jessie", "https://vagrant.devuan.org/devuan_jessie_beta/devuan_jessie_1.0.0-beta_amd64_vagrant.box" ]
   ]
 
   config.vm.provider "virtualbox" do |v|
