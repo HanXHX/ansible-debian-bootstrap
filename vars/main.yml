@@ -18,6 +18,7 @@ dbs_packages:
   - hping3
   - iotop
   - iptraf-ng
+  - lsof
   - lynx
   - make
   - most
