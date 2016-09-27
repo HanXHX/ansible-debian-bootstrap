@@ -2,6 +2,7 @@ dbs_packages:
   - apt-transport-https
   - aptitude
   - bash-completion
+  - binutils
   - bmon
   - cpanminus
   - curl
