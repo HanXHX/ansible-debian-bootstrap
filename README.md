@@ -126,6 +126,7 @@ Due to Docker limitations, we can't check:
 - Setting locales
 - Configure unbound
 - Configure sysctl
+- Install NTP (it seems /etc/ntp.conf is rewrited between to launch, it breaks idempotence)
 
 
 License
