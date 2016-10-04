@@ -43,6 +43,8 @@
   with_subelements:
     - "{{ dbs_users }}"
     - ssh_keys
+    - flags:
+      skip_missing: true
   when: item.0.state is not defined or item.0.state == 'present'
 
 - name: TEMPLATE | Create sudoers file

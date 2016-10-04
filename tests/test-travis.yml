@@ -30,9 +30,7 @@
         groups: 'superdaemon'
         shell: '/usr/sbin/nologin'
         sudo: false
-        ssh_keys: []
       - name: 'regis'
-        ssh_keys: []
         state: 'absent'
   roles:
     - ../../

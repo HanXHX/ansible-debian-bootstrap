@@ -21,10 +21,8 @@
         groups: 'superdaemon'
         shell: '/usr/sbin/nologin'
         sudo: false
-        ssh_keys: []
         password: '1a2b3c'
       - name: 'regis'
-        ssh_keys: []
         state: 'absent'
     dbs_ntp_pkg: 'ntp'
     dbs_locales:
