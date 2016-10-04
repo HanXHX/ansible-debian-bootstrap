@@ -47,7 +47,7 @@ Theses variables define hostname to configure APT (normal repo and backports):
 - `dbs_default_locale`: default system locale
 - `dbs_locales`: list of installed locales
 - `dbs_timezone`: system timezone. If you need a "standard" timezone like UTC, you must use prefix "Etc/" (ex: "Etc/UTC")
-- `dbs_sysctl_config: list of kernel parameters, see`: [default/main.yml]
+- `dbs_sysctl_config`: hash of kernel parameters, see: [default/main.yml](default/main.yml)
 - `dbs_use_systemd`: delete systemd if set to false (persistent)
 - `dbs_use_unbound`: configure Local DNS and manage network (default is false)
 - `dbs_use_dotfiles`: overwrite root dotfiles (bashrc, screenrc, vimrc)
