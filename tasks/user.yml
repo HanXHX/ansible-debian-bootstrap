@@ -11,13 +11,14 @@
 - name: USER | Add users to the system
   user: >
     name={{ item.name }}
-    shell={{ item.shell | default('/bin/bash') }}
+    shell={{ item.shell | default(omit) }}
     comment={{ item.comment | default('') }}
     groups={{ item.groups | default('') }}
-    home={{ item.home | default('/home/' + item.name) }}
+    home={{ item.home | default(omit) }}
     createhome={{ item.createhome | default('yes') }}
     system={{ item.system | default('no') }}
     state={{ item.state | default('present') }}
+    password={{ item.password | default(omit) }}
   with_items: "{{ dbs_users }}"
   register: u
 

@@ -83,6 +83,7 @@ Each row have few keys:
 Each row have few keys:
 
 - `name`: (M) username on system
+- `password`: (O) password
 - `shell`: (O) default is /bin/bash
 - `comment`: (O) default is an empty string
 - `sudo`: (O) boolean (true = can sudo)
