@@ -22,4 +22,3 @@
     sysctl_file=/etc/sysctl.d/ansible.conf
     state=present
   with_dict: "{{ dbs_sysctl_config }}"
-

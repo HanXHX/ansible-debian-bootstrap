@@ -60,21 +60,6 @@
   with_flattened:
     - "{{ dbs_packages }}"
     - "{{ dbs_distro_packages }}"
-
-- name: APT | Install Intel Microcode if needed
-  apt: >
-    pkg=intel-microcode
-    state=present
-    default_release='{{ dbs_microcode_apt_distribution }}'
-  when: >
-    ansible_processor[0].find('Intel') != -1 and
-    ansible_architecture == 'x86_64'
-
-- name: APT | Install AMD Microcode if needed
-  apt: >
-    pkg=amd64-microcode
-    state=present
-    default_release='{{ dbs_microcode_apt_distribution }}'
-  when: >
-    ansible_processor[0].find('AMD') != -1 and
-    ansible_architecture == 'x86_64'
+  async: 7200
+  poll: 0
+  register: apt_install
