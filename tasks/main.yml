@@ -21,8 +21,26 @@
 - name: INCLUDE | Manage system users
   include: user.yml
 
-- name: INCLUDE | Configure APT
+- name: INCLUDE | Configure APT and install packages (async step 1)
   include: apt.yml
+
+- name: INCLUDE | Set timezone
+  include: timezone.yml
+  when: dbs_set_timezone
+
+- name: INCLUDE | Manage locales
+  include: locale.yml
+  when: dbs_set_locale
+
+- name: INCLUDE | Install packages (step 2)
+  include: post_apt.yml
+
+- name: INCLUDE | Misc system configuration
+  include: system.yml
+
+- name: INCLUDE | Configure NTP damon
+  include: ntp.yml
+  when: dbs_set_ntp
 
 - name: INCLUDE | Configure DNS cache
   include: unbound.yml
@@ -34,18 +52,3 @@
     ansible_distribution == 'Debian' and
     ansible_distribution_major_version | version_compare(7, 'gt') and
     not dbs_use_systemd
-
-- name: INCLUDE | Set timezone
-  include: timezone.yml
-  when: dbs_set_timezone
-
-- name: INCLUDE | Manage locales
-  include: locale.yml
-  when: dbs_set_locale
-
-- name: INCLUDE | Install NTP damon
-  include: ntp.yml
-  when: dbs_set_ntp
-
-- name: INCLUDE | Misc system configuration
-  include: system.yml
