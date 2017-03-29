@@ -8,7 +8,6 @@ This role bootstraps Debian/Devuan server:
 - Configure APT (sources.list)
 - Install minimal packages (vim, htop...)
 - Install Intel/AMD microcode if needed
-- Install and configure Local DNS with [Unbound](https://www.unbound.net). Feature in beta-test! DO NOT USE IT IN PRODUCTION!
 - Install and configure NTP daemon ([OpenNTPd](http://www.openntpd.org/) or [NTP](http://support.ntp.org/))
 - Add groups, users with SSH key, sudoers
 - Deploy bashrc, vimrc for root
@@ -49,7 +48,6 @@ Theses variables define hostname to configure APT (normal repo and backports):
 - `dbs_timezone`: system timezone. If you need a "standard" timezone like UTC, you must use prefix "Etc/" (ex: "Etc/UTC")
 - `dbs_sysctl_config`: hash of kernel parameters, see: [default/main.yml](default/main.yml)
 - `dbs_use_systemd`: delete systemd if set to false (persistent)
-- `dbs_use_unbound`: configure Local DNS and manage network (default is false)
 - `dbs_use_dotfiles`: overwrite root dotfiles (bashrc, screenrc, vimrc)
 - `dbs_uninstall_packages`: packages list to uninstall
 
@@ -125,7 +123,6 @@ Due to Docker limitations, we can't check:
 - Removing systemd
 - Setting hostname
 - Setting locales
-- Configure unbound
 - Configure sysctl
 - Install NTP (it seems /etc/ntp.conf is rewrited between to launch, it breaks idempotence)
 

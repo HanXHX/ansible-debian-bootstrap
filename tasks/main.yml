@@ -24,10 +24,6 @@
 - name: INCLUDE | Configure APT
   include: apt.yml
 
-- name: INCLUDE | Configure DNS cache
-  include: unbound.yml
-  when: dbs_use_unbound
-
 - name: INCLUDE | Kick systemd
   include: nosystemd.yml
   when: >

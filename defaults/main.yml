@@ -16,7 +16,6 @@ dbs_locales:
 dbs_default_locale: 'en_US.UTF-8'
 dbs_timezone: 'Europe/Paris'
 dbs_use_systemd: false
-dbs_use_unbound: false
 dbs_use_dotfiles: true
 dbs_uninstall_packages: []
 
