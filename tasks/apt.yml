@@ -50,6 +50,8 @@
 - name: APT | Update cache if necessary
   apt: update_cache=yes
   when: ar.changed or ars.changed
+  tags:
+    - skip_ansible_lint
 
 - name: APT | Uninstall packages
   apt: pkg={{ item }} state=absent

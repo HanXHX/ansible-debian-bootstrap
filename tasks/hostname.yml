@@ -25,6 +25,8 @@
   with_items: "{{ dbs_hostname_files }}"
   ignore_errors: yes
   when: change_hostname.changed
+  tags:
+    - skip_ansible_lint
 
 - name: REPLACE | Change old short dbs_hostname to new on several files
   replace: >
@@ -34,10 +36,10 @@
   with_items: "{{ dbs_hostname_files }}"
   ignore_errors: yes
   when: change_hostname.changed
+  tags:
+    - skip_ansible_lint
 
 # Dangerous...
 #- name: SERVICE | Force networking restart
 #  service: name=networking state=restarted
 #  when: change_hostname.changed
-
-

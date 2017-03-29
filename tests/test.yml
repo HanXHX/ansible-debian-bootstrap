@@ -27,6 +27,11 @@
     dbs_locales:
       - 'en_US.UTF-8'
       - 'fr_FR.UTF-8'
+  pre_tasks:
+    - name: SETUP
+      action: setup
+      register: prout
+    - name: DEBUG | All vars
+      debug: var=prout
   roles:
     - ../../
-

@@ -20,7 +20,6 @@
     state={{ item.state | default('present') }}
     password={{ item.password | default(omit) }}
   with_items: "{{ dbs_users }}"
-  register: u
 
 - name: GROUP | Delete groups to the system
   group: >
@@ -53,5 +52,3 @@
     dest=/etc/sudoers.d/ansible
     mode=0440
     validate='visudo -cf %s'
-  when: u.changed
-
