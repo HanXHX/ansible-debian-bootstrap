@@ -101,6 +101,7 @@ Each row have few keys:
 - `dbs_hostname_files`: list of file where we should substitute bad hostname
 - `dbs_microcode_apt_distribution`: location of package to install microcode
 - `dbs_distro_packages`: list specific package to install (related to OS version)
+- `dbs_is_docker`: boolean. Is true if current is a docker container
 
 Dependencies
 ------------
@@ -115,17 +116,14 @@ Example Playbook
          - { role: HanXHX.debian_bootstrap }
 
 
-About TravisCI
---------------
+About Docker
+------------
 
-Due to Docker limitations, we can't check:
+Due to Docker limitations, theses features are disabled:
 
 - Removing systemd
 - Setting hostname
-- Setting locales
 - Configure sysctl
-- Install NTP (it seems /etc/ntp.conf is rewrited between to launch, it breaks idempotence)
-
 
 License
 -------

@@ -2,3 +2,7 @@
 
 - name: FILE | Creates ansible facts.d
   file: path=/etc/ansible/facts.d state=directory
+
+- name: SET_FACT | Is docker?
+  set_fact:
+    dbs_is_docker: "{{ false if ansible_virtualization_type is not defined or ansible_virtualization_type != 'docker' else true }}"

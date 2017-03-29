@@ -16,7 +16,7 @@
 
 - name: INCLUDE | Set hostname
   include: hostname.yml
-  when: dbs_set_hostname
+  when: dbs_set_hostname and not dbs_is_docker
 
 - name: INCLUDE | Manage system users
   include: user.yml
@@ -29,7 +29,8 @@
   when: >
     ansible_distribution == 'Debian' and
     ansible_distribution_major_version | version_compare(7, 'gt') and
-    not dbs_use_systemd
+    not dbs_use_systemd and
+    not dbs_is_docker
 
 - name: INCLUDE | Set timezone
   include: timezone.yml
