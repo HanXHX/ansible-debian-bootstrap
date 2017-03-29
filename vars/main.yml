@@ -19,6 +19,7 @@ dbs_packages:
   - hping3
   - iotop
   - iptraf-ng
+  - locales
   - lsof
   - lynx
   - make
