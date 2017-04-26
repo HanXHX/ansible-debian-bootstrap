@@ -8,6 +8,7 @@
 # We MUST update cache... Ansible auto install python-apt
 - name: APT | Update
   apt: update_cache=yes cache_valid_time=3600
+  changed_when: false
 
 - name: FILE | Delete default repository (sources.list)
   file: path=/etc/apt/sources.list state=absent
