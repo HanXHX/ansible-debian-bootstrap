@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
 
       if vm[0] == "devuan-jessie"
           config.ssh.username = "root"
-          config.ssh.password = "devuan"
+          config.ssh.password = "toor"
           config.vm.guest = :debian
           config.vm.synced_folder ".", "/vagrant", disabled: true
       end
