@@ -56,3 +56,5 @@ dbs_hostname_files:
   - /etc/ssh/ssh_host_dsa_key.pub
   - /etc/motd
   - /etc/ssmtp/ssmtp.conf
+
+dbs_sysvinit_packages: ["sysvinit-core", "sysvinit-utils"]

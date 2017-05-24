@@ -2,10 +2,7 @@
 
 - name: APT | Install sysvinit
   apt: pkg={{ item }} state=present
-  with_items:
-    - sysvinit-core
-    - sysvinit
-    - sysvinit-utils
+  with_items: "{{ dbs_sysvinit_packages }}"
   register: sysv_installed
 
 - block:
@@ -30,6 +27,9 @@
       state=started
       delay=30
     become: false
+
+  - name: SETUP
+    action: setup
 
   when: sysv_installed.changed
   tags:

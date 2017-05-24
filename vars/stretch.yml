@@ -1,0 +1,4 @@
+dbs_microcode_apt_distribution: 'stretch'
+dbs_distro_packages:
+  - glances
+  - jq

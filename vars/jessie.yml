@@ -2,3 +2,4 @@ dbs_microcode_apt_distribution: 'jessie'
 dbs_distro_packages:
   - glances
   - jq
+dbs_sysvinit_packages: ["sysvinit-core", "sysvinit", "sysvinit-utils"]

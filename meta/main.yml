@@ -4,12 +4,13 @@ galaxy_info:
   description: Normalize and prepare a Debian server
   company:
   license: GPLv2
-  min_ansible_version: 1.9
+  min_ansible_version: 2.2
   platforms:
   - name: Debian
     versions:
     - wheezy
     - jessie
+    - stretch
   galaxy_tags:
   - networking
   - packaging
