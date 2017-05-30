@@ -23,6 +23,7 @@ dbs_uninstall_packages: []
 # Role setup
 # -------------------------
 dbs_set_hostname: true
+dbs_clean_hosts: true
 dbs_set_locale: true
 dbs_set_timezone: true
 dbs_set_ntp: true
