@@ -32,23 +32,31 @@ Vagrant.configure("2") do |config|
         ansible.verbose = 'vv'
         ansible.sudo = true
         ansible.extra_vars = opts[:vars]
+        ansible.raw_arguments = ["-D"]
       end
     end
   end
 
   vms_debian.each do |opts|
     config.vm.define opts[:name] do |m|
-      m.vm.box = opts[:box]
+      if opts[:name] == "devuan-jessie"
+        m.vm.box_url = opts[:box]
+        m.vm.box = opts[:name]
+        m.vm.provision "shell", inline: "apt-get update -qq && apt-get -y install python"
+      else
+        m.vm.box = opts[:box]
+      end
       m.vm.provider "virtualbox" do |v|
         v.cpus = 1
         v.memory = 256
       end
-       m.vm.provision "ansible" do |ansible|
-         ansible.playbook = "tests/test.yml"
-         ansible.verbose = 'vv'
-         ansible.sudo = true
-          ansible.extra_vars = opts[:vars]
-       end
+      m.vm.provision "ansible" do |ansible|
+        ansible.playbook = "tests/test.yml"
+        ansible.verbose = 'vv'
+        ansible.sudo = true
+        ansible.extra_vars = opts[:vars]
+        ansible.raw_arguments = ["-D"]
+      end
     end
   end
 end

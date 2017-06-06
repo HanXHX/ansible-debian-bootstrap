@@ -1,9 +1,9 @@
 ---
 
-# Force jessie (lsb-release with bad configuration)
+# Force jessie (/etc/os-release with bad configuration)
 ansible_distribution_release: 'jessie'
 
-# We can't set hostname
+# We can't set hostname (https://github.com/ansible/ansible/issues/25395)
 dbs_set_hostname: false
 
 # Hummm really?
@@ -14,4 +14,3 @@ dbs_repo_new:
   - "http://{{ dbs_apt_default_host }}/merged {{ ansible_distribution_release }} {{ dbs_apt_components }}"
   - "http://{{ dbs_apt_default_host }}/merged {{ ansible_distribution_release }}-updates {{ dbs_apt_components }}"
   - "http://{{ dbs_apt_default_host }}/merged {{ ansible_distribution_release }}-backports main"
-#  - "http://security.debian.org/ {{ ansible_distribution_release }}/updates {{ dbs_apt_components }}"
