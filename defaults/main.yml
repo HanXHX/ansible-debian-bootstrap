@@ -14,7 +14,7 @@ dbs_hostname: 'debian-boostrap.local'
 dbs_locales:
   - 'en_US.UTF-8'
 dbs_default_locale: 'en_US.UTF-8'
-dbs_timezone: 'Europe/Paris'
+dbs_timezone: 'Etc/UTC'
 dbs_use_systemd: false
 dbs_use_dotfiles: true
 dbs_uninstall_packages: []
