@@ -22,7 +22,7 @@ Supported Version
 | ------------------ | ------- | ----------------------- |
 | Debian Wheezy (7)  | Yes     | Yes                     |
 | Debian Jessie (8)  | Yes     | Yes                     |
-| Debian Stretch (9) | Yes     | No                      |
+| Debian Stretch (9) | Yes     | Yes                     |
 | Devuan Jessie (1)  | No      | No                      |
 
 Requirements

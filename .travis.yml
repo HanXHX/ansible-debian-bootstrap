@@ -1,16 +1,41 @@
 env:
-  - PLATFORM=debian-wheezy
-  - PLATFORM=debian-jessie
+  - PLATFORM='docker-debian-wheezy'  ANSIBLE_VERSION='ansible>=2.0,<2.1'
+  - PLATFORM='docker-debian-jessie'  ANSIBLE_VERSION='ansible>=2.0,<2.1'
+  - PLATFORM='docker-debian-stretch' ANSIBLE_VERSION='ansible>=2.0,<2.1'
+  - PLATFORM='docker-debian-wheezy'  ANSIBLE_VERSION='ansible>=2.1,<2.2'
+  - PLATFORM='docker-debian-jessie'  ANSIBLE_VERSION='ansible>=2.1,<2.2'
+  - PLATFORM='docker-debian-stretch' ANSIBLE_VERSION='ansible>=2.1,<2.2'
+  - PLATFORM='docker-debian-wheezy'  ANSIBLE_VERSION='ansible>=2.2,<2.3'
+  - PLATFORM='docker-debian-jessie'  ANSIBLE_VERSION='ansible>=2.2,<2.3'
+  - PLATFORM='docker-debian-stretch' ANSIBLE_VERSION='ansible>=2.2,<2.3'
+  - PLATFORM='docker-debian-wheezy'  ANSIBLE_VERSION='ansible>=2.3,<2.4'
+  - PLATFORM='docker-debian-jessie'  ANSIBLE_VERSION='ansible>=2.3,<2.4'
+  - PLATFORM='docker-debian-stretch' ANSIBLE_VERSION='ansible>=2.3,<2.4'
 
 sudo: required
+
+dist: trusty
 
 language: python
 
 services:
   - docker
 
+before_install:
+  - wget https://releases.hashicorp.com/vagrant/1.9.5/vagrant_1.9.5_x86_64.deb
+  - sudo dpkg -i vagrant_1.9.5_x86_64.deb
+
+install:
+  - pip install "$ANSIBLE_VERSION"
+
 script:
-  - docker build -f tests/$PLATFORM.Dockerfile -t test-$PLATFORM . && docker run --name $PLATFORM test-$PLATFORM
+  - VAGRANT_DEFAULT_PROVIDER=docker vagrant up $PLATFORM
+  - >
+    VAGRANT_DEFAULT_PROVIDER=docker vagrant provision $PLATFORM
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+  - VAGRANT_DEFAULT_PROVIDER=docker vagrant status
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
