@@ -15,7 +15,7 @@ dbs_locales:
   - 'en_US.UTF-8'
 dbs_default_locale: 'en_US.UTF-8'
 dbs_timezone: 'Etc/UTC'
-dbs_use_systemd: false
+dbs_use_systemd: true
 dbs_use_dotfiles: true
 dbs_uninstall_packages: []
 
@@ -111,3 +111,6 @@ dbs_sysctl_config:
   'net.ipv4.tcp_window_scaling': '1'
 # number of packets to keep in backlog before the kernel starts dropping them
   'net.ipv4.tcp_max_syn_backlog': '3240000'
+
+# Internal use (DO NOT UPDATE)
+dbs_timezone_legacy_mode: false

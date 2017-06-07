@@ -2,7 +2,7 @@
 
 - hosts: all
   vars:
-    dbs_timezone: 'Europe/Paris'
+    dbs_timezone: 'America/Havana'
     dbs_uninstall_packages:
       - 'atop'
     dbs_groups:
@@ -36,3 +36,14 @@
       debug: var=prout
   roles:
     - ../../
+  post_tasks:
+    - name: -- TEST -- COMMAND | Get timezone
+      command: cat /etc/timezone
+      changed_when: false
+      register: ntz
+    - name: -- TEST -- ASSERT | We have good timezone
+      assert:
+        that: "ntz.stdout == dbs_timezone"
+    - name: -- TEST -- COMMAND | Date
+      command: date
+      changed_when: false

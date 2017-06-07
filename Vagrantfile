@@ -6,10 +6,12 @@
 Vagrant.configure("2") do |config|
 
   vms_debian = [
-    { :name => "debian-wheezy",  :box => "debian/wheezy64", },
-    { :name => "debian-jessie",  :box => "debian/jessie64", },
-    { :name => "debian-stretch", :box => "debian/stretch64" },
-    { :name => "devuan-jessie",  :box => "https://files.devuan.org/devuan_jessie/virtual/devuan_jessie_1.0.0_amd64_vagrant.box" }
+    { :name => "debian-wheezy",           :box => "debian/wheezy64" },
+    { :name => "debian-jessie",           :box => "debian/jessie64",  :vars => { dbs_use_systemd: true  } },
+    { :name => "debian-jessie-sysvinit",  :box => "debian/jessie64",  :vars => { dbs_use_systemd: false } },
+    { :name => "debian-stretch",          :box => "debian/stretch64", :vars => { dbs_use_systemd: true  } },
+    { :name => "debian-stretch-sysvinit", :box => "debian/stretch64", :vars => { dbs_use_systemd: false } },
+    { :name => "devuan-jessie",           :box => "https://files.devuan.org/devuan_jessie/virtual/devuan_jessie_1.0.0_amd64_vagrant.box" }
   ]
 
   conts = [
