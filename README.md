@@ -23,12 +23,12 @@ Supported Version
 | Debian Wheezy (7)  | Yes     | Yes                     |
 | Debian Jessie (8)  | Yes     | Yes                     |
 | Debian Stretch (9) | Yes     | Yes                     |
-| Devuan Jessie (1)  | No      | No                      |
+| Devuan Jessie (1)  | Yes     | No                      |
 
 Requirements
 ------------
 
-This role needs `sudo` package already installed.
+None.
 
 Role Variables
 --------------
