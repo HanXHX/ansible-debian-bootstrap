@@ -10,49 +10,55 @@
   apt: update_cache=yes cache_valid_time=3600
   changed_when: false
 
-- name: FILE | Delete default repository (sources.list)
-  file: path=/etc/apt/sources.list state=absent
+- block:
 
-- name: APT_REPOSITORY | Delete old deb repo
-  apt_repository: >
-    repo="deb {{ item }}"
-    state=absent
-  when: item not in dbs_repo_new
-  with_items: "{{ dbs_repo_old }}"
+  - name: FILE | Delete default repository (sources.list)
+    file:
+      path: /etc/apt/sources.list
+      state: absent
 
-- name: APT_REPOSITORY | Delete old deb-src repo
-  apt_repository: >
-    repo="deb-src {{ item }}"
-    state=absent
-  when: item not in dbs_repo_new
-  with_items: "{{ dbs_repo_old }}"
+  - name: APT_REPOSITORY | Delete old deb repo
+    apt_repository:
+      repo: "deb {{ item }}"
+      state: absent
+    when: item not in dbs_repo_new
+    with_items: "{{ dbs_repo_old }}"
 
-- name: APT_REPOSITORY | Add repositories
-  apt_repository: >
-    repo="deb {{ item }}"
-    state=present
-    update_cache=no
-  register: ar
-  with_items: "{{ dbs_repo_new }}"
+  - name: APT_REPOSITORY | Delete old deb-src repo
+    apt_repository:
+      repo: "deb-src {{ item }}"
+      state: absent
+    when: item not in dbs_repo_new
+    with_items: "{{ dbs_repo_old }}"
 
-- name: APT_REPOSITORY | Add src repositories
-  apt_repository: >
-    repo="deb-src {{ item }}"
-    state="{{ 'present' if dbs_apt_use_src else 'absent' }}"
-    update_cache=no
-  register: ars
-  with_items: "{{ dbs_repo_new }}"
+  - name: APT_REPOSITORY | Add repositories
+    apt_repository:
+      repo: "deb {{ item }}"
+      state: present
+      update_cache: no
+    register: ar
+    with_items: "{{ dbs_repo_new }}"
 
-- name: COPY | Manage current repositories
-  copy: >
-    content="{ \"dbs_repo_old\": {{ dbs_repo_new | to_json }} }"
-    dest=/etc/ansible/facts.d/apt_sources.fact
+  - name: APT_REPOSITORY | Add src repositories
+    apt_repository:
+      repo: "deb-src {{ item }}"
+      state: "{{ 'present' if dbs_apt_use_src else 'absent' }}"
+      update_cache: no
+    register: ars
+    with_items: "{{ dbs_repo_new }}"
 
-- name: APT | Update cache if necessary
-  apt: update_cache=yes
-  when: ar.changed or ars.changed
-  tags:
-    - skip_ansible_lint
+  - name: COPY | Manage current repositories
+    copy:
+      content: "{ \"dbs_repo_old\": {{ dbs_repo_new | to_json }} }"
+      dest: /etc/ansible/facts.d/apt_sources.fact
+
+  - name: APT | Update cache if necessary
+    apt: update_cache=yes
+    when: ar.changed or ars.changed
+    tags:
+      - skip_ansible_lint
+
+  when: dbs_set_apt
 
 - name: APT | Uninstall packages
   apt: pkg={{ item }} state=absent

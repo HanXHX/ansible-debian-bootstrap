@@ -48,6 +48,7 @@ Theses variables define hostname to configure APT (normal repo and backports):
 - `dbs_set_locale`: if true, configure locales
 - `dbs_set_timezone`: if true, set timezone
 - `dbs_set_ntp`: if true, install and configure OpenNTPd
+- `dbs_set_apt`: if true, configure APT repository
 
 ### System configuration
 
