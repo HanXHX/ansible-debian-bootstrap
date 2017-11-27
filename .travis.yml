@@ -13,8 +13,8 @@ services:
   - docker
 
 before_install:
-  - wget https://releases.hashicorp.com/vagrant/1.9.5/vagrant_1.9.5_x86_64.deb
-  - sudo dpkg -i vagrant_1.9.5_x86_64.deb
+  - wget https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.deb
+  - sudo dpkg -i vagrant_2.0.1_x86_64.deb
 
 install:
   - pip install "$ANSIBLE_VERSION"
