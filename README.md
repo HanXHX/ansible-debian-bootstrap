@@ -140,6 +140,18 @@ License
 
 GPLv2
 
+Donation
+--------
+
+If this code helped you, or if you’ve used them for your projects, feel free to buy me some :beers:
+
+- Bitcoin: `1BQwhBeszzWbUTyK4aUyq3SRg7rBSHcEQn`
+- Ethereum: `63abe6b2648fd892816d87a31e3d9d4365a737b5`
+- Litecoin: `LeNDw34zQLX84VvhCGADNvHMEgb5QyFXyD`
+- Monero: `45wbf7VdQAZS5EWUrPhen7Wo4hy7Pa7c7ZBdaWQSRowtd3CZ5vpVw5nTPphTuqVQrnYZC72FXDYyfP31uJmfSQ6qRXFy3bQ`
+
+No crypto-currency? :star: the project is also a way of saying thank you! :sunglasses:
+
 Author Information
 ------------------
 
