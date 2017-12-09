@@ -1,7 +1,9 @@
 ---
 
 - name: FILE | Creates ansible facts.d
-  file: path=/etc/ansible/facts.d state=directory
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
 
 - name: SET_FACT | Is docker?
   set_fact:

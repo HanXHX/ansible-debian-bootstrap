@@ -1,13 +1,15 @@
 ---
 
 - name: COPY | Configure APT no extra packages
-  copy: >
-    src=etc/apt/apt.conf.d/90noextrapackages
-    dest=/etc/apt/apt.conf.d/90noextrapackages
+  copy:
+    src: etc/apt/apt.conf.d/90noextrapackages
+    dest: /etc/apt/apt.conf.d/90noextrapackages
 
 # We MUST update cache... Ansible auto install python-apt
 - name: APT | Update
-  apt: update_cache=yes cache_valid_time=3600
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
   changed_when: false
 
 - block:
@@ -61,29 +63,35 @@
   when: dbs_set_apt
 
 - name: APT | Uninstall packages
-  apt: pkg={{ item }} state=absent
+  apt:
+    pkg: "{{ item }}"
+    state: absent
   with_items: "{{ dbs_uninstall_packages }}"
 
 - name: APT | Install few packages
-  apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
   with_flattened:
     - "{{ dbs_packages }}"
     - "{{ dbs_distro_packages }}"
 
 - name: APT | Install Intel Microcode if needed
-  apt: >
-    pkg=intel-microcode
-    state=present
-    default_release='{{ dbs_microcode_apt_distribution }}'
+  apt:
+    pkg: intel-microcode
+    state: present
+    default_release: '{{ dbs_microcode_apt_distribution }}'
   when: >
     ansible_processor[0].find('Intel') != -1 and
     ansible_architecture == 'x86_64'
 
 - name: APT | Install AMD Microcode if needed
-  apt: >
-    pkg=amd64-microcode
-    state=present
-    default_release='{{ dbs_microcode_apt_distribution }}'
+  apt:
+    pkg: amd64-microcode
+    state: present
+    default_release: '{{ dbs_microcode_apt_distribution }}'
   when: >
     ansible_processor[0].find('AMD') != -1 and
     ansible_architecture == 'x86_64'

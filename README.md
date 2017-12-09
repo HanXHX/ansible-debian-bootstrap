@@ -108,7 +108,6 @@ Each row have few keys:
 ### Readonly vars
 
 - `dbs_packages`: list of packages to install
-- `dbs_hostname_files`: list of file where we should substitute bad hostname
 - `dbs_microcode_apt_distribution`: location of package to install microcode
 - `dbs_distro_packages`: list specific package to install (related to OS version)
 - `dbs_is_docker`: boolean. Is true if current is a docker container

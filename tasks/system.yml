@@ -1,13 +1,19 @@
 ---
 
 - name: UPDATE-ALTERNATIVE | Vim is my main editor
-  alternatives: name=editor path={{ dbs_alternative_editor }}
+  alternatives:
+    name: editor
+    path: "{{ dbs_alternative_editor }}"
 
 - name: UPDATE-ALTERNATIVE | Gawk (GNU awk) is the best
-  alternatives: name=awk path={{ dbs_alternative_awk }}
+  alternatives:
+    name: awk
+    path: "{{ dbs_alternative_awk }}"
 
 - name: COPY | dotfiles for root
-  copy: src={{ item }} dest="/root/.{{ item }}"
+  copy:
+    src: "{{ item }}"
+    dest: "/root/.{{ item }}"
   with_items:
     - "bashrc"
     - "vimrc"
@@ -16,10 +22,10 @@
   when: dbs_use_dotfiles
 
 - name: SYSCTL | Tuning
-  sysctl: >
-    name={{ item.key }}
-    value='{{ item.value }}'
-    sysctl_file=/etc/sysctl.d/ansible.conf
-    state=present
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_file: /etc/sysctl.d/ansible.conf
+    state: present
   with_dict: "{{ dbs_sysctl_config }}"
   when: not dbs_is_docker

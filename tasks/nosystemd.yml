@@ -1,7 +1,9 @@
 ---
 
 - name: APT | Install sysvinit
-  apt: pkg={{ item }} state=present
+  apt:
+    pkg: "{{ item }}"
+    state: present
   with_items: "{{ dbs_sysvinit_packages }}"
   register: sysv_installed
 
@@ -36,7 +38,12 @@
     - skip_ansible_lint
 
 - name: APT | Purge systemd
-  apt: pkg=systemd state=absent purge=yes
+  apt:
+    pkg: systemd
+    state: absent
+    purge: yes
 
 - name: COPY | Configure APT no extra packages
-  copy: src=etc/apt/preferences.d/systemd dest=/etc/apt/preferences.d/systemd
+  copy:
+    src: etc/apt/preferences.d/systemd
+    dest: /etc/apt/preferences.d/systemd

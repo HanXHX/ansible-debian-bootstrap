@@ -8,11 +8,15 @@
     ansible_distribution_major_version | version_compare(9, 'ge')
 
 - name: TIMEZONE | Set
-  timezone: name="{{ dbs_timezone }}"
+  timezone:
+    name: "{{ dbs_timezone }}"
   when: not dbs_timezone_legacy_mode
   notify: [ restart cron ]
 
 - name: FILE | Update timezone (for Debian Stretch with sysvinit)
-  file: src='/usr/share/zoneinfo/{{ dbs_timezone }}' dest=/etc/localtime state=link
+  file:
+    src: "/usr/share/zoneinfo/{{ dbs_timezone }}"
+    dest: /etc/localtime
+    state: link
   when: dbs_timezone_legacy_mode
   notify: [ update tzdata, restart cron ]
