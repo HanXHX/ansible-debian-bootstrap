@@ -91,7 +91,9 @@ Each row have few keys:
 Each row have few keys:
 
 - `name`: (M) username on system
-- `password`: (O) password
+- `password`: (O) password with hash format (see [ansible doc](http://docs.ansible.com/ansible/latest/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module))
+- `clear_password`: (O) password as clear format (not recommanded)
+- `update_password`: (O) always / on\_create
 - `shell`: (O) default is /bin/bash
 - `comment`: (O) default is an empty string
 - `sudo`: (O) boolean (true = can sudo)
@@ -104,6 +106,10 @@ Each row have few keys:
 
 (M) Mandatory
 (O) Optionnal
+
+Note: if `password` is specified, `clear_password` is not used!
+
+For more information, look [ansible user module doc](http://docs.ansible.com/ansible/latest/user_module.html).
 
 ### Readonly vars
 

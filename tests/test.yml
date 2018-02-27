@@ -19,9 +19,12 @@
       - name: 'hx'
         group: 'www-data'
         groups: 'superdaemon'
-        shell: '/usr/sbin/nologin'
+        shell: '/usr/bin/zsh'
         sudo: false
-        password: '1a2b3c'
+        clear_password: '1a2b3c'
+      - name: 'gunther'
+        password: '$6$fFXafeiTssSG3LX3$/ji4TrTVWJwQdgKeLs69OtmXbpe6faCw7XCO5xzHSv3FqVdHA0qjgs01ZovYQBt./5vH5eUVT7XeOpb0PRtQh/' # tralala
+        shell: '/bin/bash'
       - name: 'regis'
         state: 'absent'
     dbs_ntp_pkg: 'ntp'
@@ -32,8 +35,8 @@
     - name: SETUP
       action: setup
       register: prout
-    - name: DEBUG | All vars
-      debug: var=prout
+    - name: APT | Install zsh
+      apt: pkg=zsh update_cache=yes cache_valid_time=3600
   roles:
     - ../../
   post_tasks:

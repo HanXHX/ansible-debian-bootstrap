@@ -18,7 +18,8 @@
     createhome: "{{ item.createhome | default('yes') }}"
     system: "{{ item.system | default('no') }}"
     state: "{{ item.state | default('present') }}"
-    password: "{{ item.password | default(omit) }}"
+    password: "{% if item.password is defined %}{{ item.password }}{% elif item.clear_password is defined%}{{ item.clear_password | password_hash('sha512') }}{% else %}{{ omit }}{% endif %}"
+    update_password: "{{ item.update_password | default(omit) }}"
   with_items: "{{ dbs_users }}"
 
 - name: GROUP | Delete groups to the system
