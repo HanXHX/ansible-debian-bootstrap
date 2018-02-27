@@ -107,7 +107,10 @@ Each row have few keys:
 (M) Mandatory
 (O) Optionnal
 
-Note: if `password` is specified, `clear_password` is not used!
+Notes:
+
+- if `password` is specified, `clear_password` is not used!
+- `clear_password` is not idempotent with `update_password` = always (default)
 
 For more information, look [ansible user module doc](http://docs.ansible.com/ansible/latest/user_module.html).
 

@@ -22,6 +22,7 @@
         shell: '/usr/bin/zsh'
         sudo: false
         clear_password: '1a2b3c'
+        update_password: 'on_create'
       - name: 'gunther'
         password: '$6$fFXafeiTssSG3LX3$/ji4TrTVWJwQdgKeLs69OtmXbpe6faCw7XCO5xzHSv3FqVdHA0qjgs01ZovYQBt./5vH5eUVT7XeOpb0PRtQh/' # tralala
         shell: '/bin/bash'
