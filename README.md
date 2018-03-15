@@ -16,11 +16,10 @@ This role bootstraps Debian/Devuan server:
 - Purge, delete and avoid systemd if wanted
 - Sysctl tuning
 
-Supported Version
+Supported versions
 
 | OS                 | Working | Stable (active support) |
 | ------------------ | ------- | ----------------------- |
-| Debian Wheezy (7)  | Yes     | Yes                     |
 | Debian Jessie (8)  | Yes     | Yes                     |
 | Debian Stretch (9) | Yes     | Yes                     |
 | Devuan Jessie (1)  | Yes     | No                      |

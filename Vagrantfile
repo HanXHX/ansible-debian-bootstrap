@@ -6,7 +6,6 @@
 Vagrant.configure("2") do |config|
 
   vms_debian = [
-    { :name => "debian-wheezy",           :box => "debian/wheezy64" },
     { :name => "debian-jessie",           :box => "debian/jessie64",  :vars => { dbs_use_systemd: true  } },
     { :name => "debian-jessie-sysvinit",  :box => "debian/jessie64",  :vars => { dbs_use_systemd: false } },
     { :name => "debian-stretch",          :box => "debian/stretch64", :vars => { dbs_use_systemd: true  } },
@@ -15,7 +14,6 @@ Vagrant.configure("2") do |config|
   ]
 
   conts = [
-    { :name => "docker-debian-wheezy",  :docker => "hanxhx/vagrant-ansible:debian7" },
     { :name => "docker-debian-jessie",  :docker => "hanxhx/vagrant-ansible:debian8" },
     { :name => "docker-debian-stretch", :docker => "hanxhx/vagrant-ansible:debian9" }
   ]

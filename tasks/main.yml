@@ -28,7 +28,6 @@
   include: nosystemd.yml
   when: >
     ansible_distribution == 'Debian' and
-    ansible_distribution_major_version | version_compare(7, 'gt') and
     not dbs_use_systemd and
     not dbs_is_docker
 
