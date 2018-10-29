@@ -10,7 +10,8 @@ Vagrant.configure("2") do |config|
     { :name => "debian-jessie-sysvinit",  :box => "debian/jessie64",  :vars => { dbs_use_systemd: false } },
     { :name => "debian-stretch",          :box => "debian/stretch64", :vars => { dbs_use_systemd: true  } },
     { :name => "debian-stretch-sysvinit", :box => "debian/stretch64", :vars => { dbs_use_systemd: false } },
-    { :name => "devuan-jessie",           :box => "https://files.devuan.org/devuan_jessie/virtual/devuan_jessie_1.0.0_amd64_vagrant.box" }
+    { :name => "devuan-jessie",           :box => "https://files.devuan.org/devuan_jessie/virtual/devuan_jessie_1.0.0_amd64_vagrant.box" },
+    { :name => "devuan-ascii",            :box => "https://files.devuan.org/devuan_ascii/virtual/devuan_ascii_2.0.0_amd64_vagrant.box" }
   ]
 
   conts = [
@@ -39,7 +40,7 @@ Vagrant.configure("2") do |config|
 
   vms_debian.each do |opts|
     config.vm.define opts[:name] do |m|
-      if opts[:name] == "devuan-jessie"
+      if opts[:name].include? "devuan"
         m.vm.box_url = opts[:box]
         m.vm.box = opts[:name]
         m.vm.provision "shell", inline: "apt-get update -qq && apt-get -y install python"

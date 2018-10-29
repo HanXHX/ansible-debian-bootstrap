@@ -1,15 +1,24 @@
 ---
 
-- name: INCLUDE_VARS | Devuan
-  include_vars: devuan.yml
-  when: ansible_distribution == 'Devuan GNU/Linux'
+- block:
 
-- name: INCLUDE_VARS | Debian
-  include_vars: debian.yml
-  when: ansible_distribution == 'Debian'
+  - name: COMMAND | Get Devuan release
+    command: cat /etc/devuan_version
+    register: osr
+    changed_when: false
+
+  - name: SET_FACT | Fix Devuan fact
+    set_fact:
+      ansible_distribution: "Devuan"
+      ansible_distribution_release: "{{ osr.stdout }}"
+
+  when: ansible_distribution is match ('^[dD]evuan')
+
+- name: INCLUDE_VARS | OS
+  include_vars: "{{ ansible_distribution }}/main.yml"
 
 - name: INCLUDE_VARS | Related to OS version
-  include_vars: "{{ ansible_distribution_release }}.yml"
+  include_vars: "{{ ansible_distribution }}/{{ ansible_distribution_release }}.yml"
 
 - name: INCLUDE | Prepare system
   include: prepare.yml
