@@ -104,8 +104,6 @@ dbs_sysctl_config:
   'net.ipv4.udp_wmem_min': '16384'
 # Increase the tcp-time-wait buckets pool size to prevent simple DOS attacks
   'net.ipv4.tcp_max_tw_buckets': '1440000'
-# Disable this feature.... dangerous ':)
-  'net.ipv4.tcp_tw_recycle': '0'
 # Reuse TIME-WAIT state for outgoing connexion (safe)
   'net.ipv4.tcp_tw_reuse': '1'
 # Increase system IP port limits to allow for more connections
