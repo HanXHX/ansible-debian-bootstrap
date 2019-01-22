@@ -31,7 +31,6 @@ dbs_packages:
   - netcat
   - nmap
   - nmon
-  - ohai
   - parallel
   - pv
   - python-pip

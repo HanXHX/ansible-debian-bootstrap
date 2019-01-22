@@ -1,9 +1,9 @@
-Ansible Debian/Devuan bootstrap
-===============================
+Ansible Debian/Devuan/Kali bootstrap
+====================================
 
 [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) [![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
 
-This role bootstraps Debian/Devuan server:
+This role bootstraps Debian/Devuan/Kali server:
 
 - Configure APT (sources.list)
 - Install minimal packages (vim, htop...)
@@ -24,6 +24,7 @@ Supported versions
 | Debian Stretch (9) | Yes     | Yes                     |
 | Devuan Jessie (1)  | Yes     | No                      |
 | Devuan Ascii (2)   | Yes     | No                      |
+| Kali Linux         | Yes     | No                      |
 
 Requirements
 ------------

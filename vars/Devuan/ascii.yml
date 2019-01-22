@@ -1,1 +1,1 @@
-dbs_distro_packages: []
+dbs_distro_packages: ["ohai"]

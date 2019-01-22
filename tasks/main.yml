@@ -14,6 +14,11 @@
 
   when: ansible_distribution is match ('^[dD]evuan')
 
+- name: SET_FACT | Fix Kali fact
+  set_fact:
+    ansible_distribution: "Kali"
+  when: ansible_distribution is match ('^[Kk]ali')
+
 - name: INCLUDE_VARS | OS
   include_vars: "{{ ansible_distribution }}/main.yml"
 

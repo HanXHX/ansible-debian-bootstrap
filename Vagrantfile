@@ -11,7 +11,9 @@ Vagrant.configure("2") do |config|
     { :name => "debian-stretch",          :box => "debian/stretch64", :vars => { dbs_use_systemd: true  } },
     { :name => "debian-stretch-sysvinit", :box => "debian/stretch64", :vars => { dbs_use_systemd: false } },
     { :name => "devuan-jessie",           :box => "https://files.devuan.org/devuan_jessie/virtual/devuan_jessie_1.0.0_amd64_vagrant.box" },
-    { :name => "devuan-ascii",            :box => "https://files.devuan.org/devuan_ascii/virtual/devuan_ascii_2.0.0_amd64_vagrant.box" }
+    { :name => "devuan-ascii",            :box => "https://files.devuan.org/devuan_ascii/virtual/devuan_ascii_2.0.0_amd64_vagrant.box" },
+    { :name => "kali",                    :box => "offensive-security/kali-linux-light", :vars => { dbs_use_systemd: true  } },
+    { :name => "kali-sysvinit",           :box => "offensive-security/kali-linux-light", :vars => { dbs_use_systemd: false } }
   ]
 
   conts = [
@@ -50,6 +52,7 @@ Vagrant.configure("2") do |config|
       m.vm.provider "virtualbox" do |v|
         v.cpus = 1
         v.memory = 256
+        v.gui = false # Force hide gui with Kali Linux
       end
       m.vm.provision "ansible" do |ansible|
         ansible.playbook = "tests/test.yml"
