@@ -29,7 +29,7 @@ Supported versions
 Requirements
 ------------
 
-None.
+Min Ansible 2.5
 
 Role Variables
 --------------

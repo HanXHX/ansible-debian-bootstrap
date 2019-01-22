@@ -2,9 +2,8 @@
 
 - name: APT | Install sysvinit
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ dbs_sysvinit_packages }}"
     state: present
-  with_items: "{{ dbs_sysvinit_packages }}"
   register: sysv_installed
 
 - block:

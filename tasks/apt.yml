@@ -64,19 +64,15 @@
 
 - name: APT | Uninstall packages
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ dbs_uninstall_packages }}"
     state: absent
-  with_items: "{{ dbs_uninstall_packages }}"
 
 - name: APT | Install few packages
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ lookup('flattened', dbs_packages, dbs_distro_packages) }}"
     state: present
     update_cache: yes
     cache_valid_time: 3600
-  with_flattened:
-    - "{{ dbs_packages }}"
-    - "{{ dbs_distro_packages }}"
 
 - name: APT | Install Intel Microcode if needed
   apt:

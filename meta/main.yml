@@ -1,10 +1,10 @@
 ---
 galaxy_info:
   author: Emilien Mantel
-  description: Normalize and prepare a Debian/Devuan server
+  description: Normalize and prepare a Debian/Devuan/Kali Linux server
   company:
   license: GPLv2
-  min_ansible_version: 2.4
+  min_ansible_version: 2.5
   platforms:
   - name: Debian
     versions:
@@ -14,6 +14,9 @@ galaxy_info:
     versions:
     - jessie
     - ascii
+  - name: Kali Linux
+    versions:
+    - rolling-kali
   galaxy_tags:
   - networking
   - packaging

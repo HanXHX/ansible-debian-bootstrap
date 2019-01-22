@@ -5,7 +5,7 @@
     dbs_timezone_legacy_mode: true
   when: >
     ansible_distribution == 'Debian' and
-    ansible_distribution_major_version | version_compare(9, 'ge')
+    ansible_distribution_major_version is version_compare(9, 'ge')
 
 - name: TIMEZONE | Set
   timezone:
