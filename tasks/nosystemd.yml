@@ -8,33 +8,21 @@
 
 - block:
 
-  - name: SHELL | Get SSH port
-    shell: ss -tapn -o state listening | awk '$NF ~ /sshd/ { print $3 }' | head -1 | cut -d ':' -f 2
-    register: ss
-    changed_when: false
-
-  # See: https://github.com/ansible/ansible/issues/10616
   - name: SHELL | Reboot machine
     shell: sleep 2 && shutdown -r now "Ansible updates triggered"
     async: 1
     poll: 0
     ignore_errors: true
 
-  - name: LOCAL_ACTION WAIT_FOR | Waiting for server to come back
-    local_action: >
-      wait_for
-      host={{ ansible_ssh_host | default(inventory_hostname) }}
-      port={{ ansible_ssh_port | default(ss.stdout) }}
-      state=started
-      delay=30
-    become: false
+  - name: WAIT_FOR_CONNECTION | Wait while rebooting...
+    wait_for_connection:
+      delay: 30
+      timeout: 600
 
   - name: SETUP
     action: setup
 
   when: sysv_installed.changed
-  tags:
-    - skip_ansible_lint
 
 - name: APT | Purge systemd
   apt:
