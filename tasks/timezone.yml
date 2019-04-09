@@ -1,22 +1,22 @@
 ---
 
-- name: SET_FACT | Select timezone update mode
-  set_fact:
-    dbs_timezone_legacy_mode: true
-  when: >
-    ansible_distribution == 'Debian' and
-    ansible_distribution_major_version is version_compare(9, 'ge')
+#- name: SET_FACT | Select timezone update mode
+#  set_fact:
+#    dbs_timezone_legacy_mode: true
+#  when: >
+#    ansible_distribution == 'Debian' and
+#    ansible_distribution_major_version is version_compare(9, 'ge')
 
 - name: TIMEZONE | Set
   timezone:
     name: "{{ dbs_timezone }}"
-  when: not dbs_timezone_legacy_mode
+# when: not dbs_timezone_legacy_mode
   notify: [ restart cron ]
 
-- name: FILE | Update timezone (for Debian Stretch with sysvinit)
-  file:
-    src: "/usr/share/zoneinfo/{{ dbs_timezone }}"
-    dest: /etc/localtime
-    state: link
-  when: dbs_timezone_legacy_mode
-  notify: [ update tzdata, restart cron ]
+  #- name: FILE | Update timezone (for Debian Stretch with sysvinit)
+  #  file:
+  #    src: "/usr/share/zoneinfo/{{ dbs_timezone }}"
+  #    dest: /etc/localtime
+  #    state: link
+  #  when: dbs_timezone_legacy_mode
+  #  notify: [ update tzdata, restart cron ]

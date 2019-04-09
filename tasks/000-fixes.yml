@@ -1,0 +1,25 @@
+---
+
+- name: SET_FACT | Bypass https://github.com/ansible/ansible/issues/19874
+  set_fact:
+    ansible_distribution_release: 'buster'
+  when: ansible_facts.distribution_major_version == "buster/sid"
+
+- block:
+
+  - name: COMMAND | Get Devuan release
+    command: cat /etc/devuan_version
+    register: osr
+    changed_when: false
+
+  - name: SET_FACT | Fix Devuan fact
+    set_fact:
+      ansible_distribution: "Devuan"
+      ansible_distribution_release: "{{ osr.stdout }}"
+
+  when: ansible_distribution is match ('^[dD]evuan')
+
+- name: SET_FACT | Fix Kali fact
+  set_fact:
+    ansible_distribution: "Kali"
+  when: ansible_distribution is match ('^[Kk]ali')
