@@ -6,10 +6,12 @@
 Vagrant.configure("2") do |config|
 
   vms_debian = [
-		{ :name => "debian-jessie",           :box => "debian/jessie64",  :vars => { dbs_use_systemd: true, dbs_set_apt: false  } },
+    { :name => "debian-jessie",           :box => "debian/jessie64",  :vars => { dbs_use_systemd: true, dbs_set_apt: false  } },
     { :name => "debian-jessie-sysvinit",  :box => "debian/jessie64",  :vars => { dbs_use_systemd: false, dbs_set_apt: false} },
     { :name => "debian-stretch",          :box => "debian/stretch64", :vars => { dbs_use_systemd: true  } },
     { :name => "debian-stretch-sysvinit", :box => "debian/stretch64", :vars => { dbs_use_systemd: false } },
+    { :name => "debian-buster",           :box => "debian/buster64",  :vars => { dbs_use_systemd: true  } },
+    { :name => "debian-buster-sysvinit",  :box => "debian/buster64",  :vars => { dbs_use_systemd: false } },
     { :name => "devuan-jessie",           :box => "https://files.devuan.org/devuan_jessie/virtual/devuan_jessie_1.0.0_amd64_vagrant.box" },
     { :name => "devuan-ascii",            :box => "https://files.devuan.org/devuan_ascii/virtual/devuan_ascii_2.0.0_amd64_vagrant.box" },
     { :name => "kali",                    :box => "offensive-security/kali-linux-light", :vars => { dbs_use_systemd: true  } },
@@ -18,7 +20,8 @@ Vagrant.configure("2") do |config|
 
   conts = [
     { :name => "docker-debian-jessie",  :docker => "hanxhx/vagrant-ansible:debian8", :vars => { dbs_set_apt: false } },
-    { :name => "docker-debian-stretch", :docker => "hanxhx/vagrant-ansible:debian9", :vars => {} }
+    { :name => "docker-debian-stretch", :docker => "hanxhx/vagrant-ansible:debian9", :vars => {} },
+    { :name => "docker-debian-buster",  :docker => "hanxhx/vagrant-ansible:debian10", :vars => {} }
   ]
 
   config.vm.network "private_network", type: "dhcp"

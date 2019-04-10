@@ -1,23 +1,7 @@
 ---
 
-- block:
-
-  - name: COMMAND | Get Devuan release
-    command: cat /etc/devuan_version
-    register: osr
-    changed_when: false
-
-  - name: SET_FACT | Fix Devuan fact
-    set_fact:
-      ansible_distribution: "Devuan"
-      ansible_distribution_release: "{{ osr.stdout }}"
-
-  when: ansible_distribution is match ('^[dD]evuan')
-
-- name: SET_FACT | Fix Kali fact
-  set_fact:
-    ansible_distribution: "Kali"
-  when: ansible_distribution is match ('^[Kk]ali')
+- name: INCLUDE | Some fixes
+  include: 000-fixes.yml
 
 - name: INCLUDE_VARS | OS
   include_vars: "{{ ansible_distribution }}/main.yml"
@@ -45,9 +29,11 @@
     not dbs_use_systemd and
     not dbs_is_docker
 
-- name: INCLUDE | Set timezone
-  include: timezone.yml
+- name: TIMEZONE | Set
+  timezone:
+    name: "{{ dbs_timezone }}"
   when: dbs_set_timezone
+  notify: [ restart cron ]
 
 - name: INCLUDE | Manage locales
   include: locale.yml
