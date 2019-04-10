@@ -29,9 +29,11 @@
     not dbs_use_systemd and
     not dbs_is_docker
 
-- name: INCLUDE | Set timezone
-  include: timezone.yml
+- name: TIMEZONE | Set
+  timezone:
+    name: "{{ dbs_timezone }}"
   when: dbs_set_timezone
+  notify: [ restart cron ]
 
 - name: INCLUDE | Manage locales
   include: locale.yml
