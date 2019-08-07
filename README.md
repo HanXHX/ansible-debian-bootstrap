@@ -22,7 +22,7 @@ Supported versions
 | ------------------ | ------- | ----------------------- |
 | Debian Jessie (8)  | Yes     | Yes                     |
 | Debian Stretch (9) | Yes     | Yes                     |
-| Debian Buster (10) | Yes     | No                      |
+| Debian Buster (10) | Yes     | Yes                     |
 | Devuan Jessie (1)  | Yes     | No                      |
 | Devuan Ascii (2)   | Yes     | No                      |
 | Kali Linux         | Yes     | No                      |
