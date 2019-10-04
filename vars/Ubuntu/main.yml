@@ -1,0 +1,10 @@
+---
+
+dbs_apt_default_host: 'archive.ubuntu.com'
+dbs_apt_components: 'main universe'
+
+dbs_repo_new:
+  - "http://{{ dbs_apt_default_host }}/ubuntu {{ ansible_distribution_release }} {{ dbs_apt_components }}"
+  - "http://security.ubuntu.com/ubuntu {{ ansible_distribution_release }}-security {{ dbs_apt_components }}"
+  - "http://{{ dbs_apt_default_host }}/ubuntu {{ ansible_distribution_release }}-updates {{ dbs_apt_components }}"
+  - "http://{{ dbs_apt_default_host }}/ubuntu {{ ansible_distribution_release }}-backports {{ dbs_apt_components }}"

@@ -15,13 +15,15 @@ Vagrant.configure("2") do |config|
     { :name => "devuan-jessie",           :box => "https://files.devuan.org/devuan_jessie/virtual/devuan_jessie_1.0.0_amd64_vagrant.box" },
     { :name => "devuan-ascii",            :box => "https://files.devuan.org/devuan_ascii/virtual/devuan_ascii_2.0.0_amd64_vagrant.box" },
     { :name => "kali",                    :box => "offensive-security/kali-linux-light", :vars => { dbs_use_systemd: true  } },
-    { :name => "kali-sysvinit",           :box => "offensive-security/kali-linux-light", :vars => { dbs_use_systemd: false } }
+    { :name => "kali-sysvinit",           :box => "offensive-security/kali-linux-light", :vars => { dbs_use_systemd: false } },
+    { :name => "ubuntu-bionic",           :box => "ubuntu/bionic64",  :vars => { dbs_use_systemd: true  } },
   ]
 
   conts = [
     { :name => "docker-debian-jessie",  :docker => "hanxhx/vagrant-ansible:debian8", :vars => { dbs_set_apt: false } },
     { :name => "docker-debian-stretch", :docker => "hanxhx/vagrant-ansible:debian9", :vars => {} },
-    { :name => "docker-debian-buster",  :docker => "hanxhx/vagrant-ansible:debian10", :vars => {} }
+    { :name => "docker-debian-buster",  :docker => "hanxhx/vagrant-ansible:debian10", :vars => {} },
+    { :name => "docker-ubuntu-bionic",  :docker => "hanxhx/vagrant-ansible:ubuntu18.04", :vars => {} }
   ]
 
   config.vm.network "private_network", type: "dhcp"
@@ -45,10 +47,12 @@ Vagrant.configure("2") do |config|
 
   vms_debian.each do |opts|
     config.vm.define opts[:name] do |m|
+      if opts[:name].include? "devuan" or opts[:name].include? "ubuntu"
+        m.vm.provision "shell", inline: "apt-get update -qq && apt-get -y install python"
+      end
       if opts[:name].include? "devuan"
         m.vm.box_url = opts[:box]
         m.vm.box = opts[:name]
-        m.vm.provision "shell", inline: "apt-get update -qq && apt-get -y install python"
       else
         m.vm.box = opts[:box]
       end

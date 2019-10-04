@@ -1,9 +1,9 @@
-Ansible Debian/Devuan/Kali bootstrap
-====================================
+Ansible Debian/Devuan/Kali/Ubuntu bootstrap
+===========================================
 
 [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) [![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
 
-This role bootstraps Debian/Devuan/Kali server:
+This role bootstraps Debian/Devuan/Kali/Ubuntu server:
 
 - Configure APT (sources.list)
 - Install minimal packages (vim, htop...)
@@ -18,14 +18,15 @@ This role bootstraps Debian/Devuan/Kali server:
 
 Supported versions
 
-| OS                 | Working | Stable (active support) |
-| ------------------ | ------- | ----------------------- |
-| Debian Jessie (8)  | Yes     | Yes                     |
-| Debian Stretch (9) | Yes     | Yes                     |
-| Debian Buster (10) | Yes     | Yes                     |
-| Devuan Jessie (1)  | Yes     | No                      |
-| Devuan Ascii (2)   | Yes     | No                      |
-| Kali Linux         | Yes     | No                      |
+| OS                    | Working | Stable (active support) |
+| --------------------- | ------- | ----------------------- |
+| Debian Jessie (8)     | Yes     | Yes                     |
+| Debian Stretch (9)    | Yes     | Yes                     |
+| Debian Buster (10)    | Yes     | Yes                     |
+| Devuan Jessie (1)     | Yes     | No                      |
+| Devuan Ascii (2)      | Yes     | No                      |
+| Kali Linux            | Yes     | No                      |
+| Ubuntu Bionic (18.04) | Yes     | No                      |
 
 Requirements
 ------------

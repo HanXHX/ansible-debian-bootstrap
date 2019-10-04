@@ -11,13 +11,16 @@ galaxy_info:
     - jessie
     - stretch
     - buster
-  - name: Devuan    
+  - name: Devuan
     versions:
     - jessie
     - ascii
   - name: Kali Linux
     versions:
     - rolling-kali
+  - name: Ubuntu
+    versions:
+    - bionic
   galaxy_tags:
   - networking
   - packaging
