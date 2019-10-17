@@ -11,6 +11,10 @@ env:
   - PLATFORM='docker-debian-stretch' ANSIBLE_VERSION='ansible>=2.7,<2.8'
   - PLATFORM='docker-debian-buster'  ANSIBLE_VERSION='ansible>=2.7,<2.8'
   - PLATFORM='docker-ubuntu-bionic'  ANSIBLE_VERSION='ansible>=2.7,<2.8'
+  - PLATFORM='docker-debian-jessie'  ANSIBLE_VERSION='ansible>=2.8,<2.9'
+  - PLATFORM='docker-debian-stretch' ANSIBLE_VERSION='ansible>=2.8,<2.9'
+  - PLATFORM='docker-debian-buster'  ANSIBLE_VERSION='ansible>=2.8,<2.9'
+  - PLATFORM='docker-ubuntu-bionic'  ANSIBLE_VERSION='ansible>=2.8,<2.9'
 
 sudo: required
 
