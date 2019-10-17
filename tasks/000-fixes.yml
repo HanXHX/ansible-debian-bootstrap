@@ -23,3 +23,8 @@
   set_fact:
     ansible_distribution: "Kali"
   when: ansible_distribution is match ('^[Kk]ali')
+
+- name: SET_FACT | Fix Raspbian fact
+  set_fact:
+    ansible_distribution: 'Raspbian'
+  when: ansible_lsb.id is match ('^[Rr]aspbian')
