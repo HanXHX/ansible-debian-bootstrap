@@ -16,11 +16,11 @@
   include: hostname.yml
   when: dbs_set_hostname and not dbs_is_docker
 
-- name: INCLUDE | Manage system users
-  include: user.yml
-
 - name: INCLUDE | Configure APT
   include: apt.yml
+
+- name: INCLUDE | Manage system users
+  include: user.yml
 
 - name: INCLUDE | Kick systemd
   include: nosystemd.yml
