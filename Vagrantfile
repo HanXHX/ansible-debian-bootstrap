@@ -16,6 +16,7 @@ Vagrant.configure("2") do |config|
     { :name => "devuan-ascii",            :box => "https://files.devuan.org/devuan_ascii/virtual/devuan_ascii_2.0.0_amd64_vagrant.box" },
     { :name => "kali",                    :box => "offensive-security/kali-linux-light", :vars => { dbs_use_systemd: true  } },
     { :name => "kali-sysvinit",           :box => "offensive-security/kali-linux-light", :vars => { dbs_use_systemd: false } },
+    { :name => "raspbian-stretch",        :box => "gvfoster/raspbian",:vars => { dbs_use_systemd: true } },
     { :name => "ubuntu-bionic",           :box => "ubuntu/bionic64",  :vars => { dbs_use_systemd: true  } },
   ]
 
