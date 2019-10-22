@@ -26,6 +26,8 @@ Supported versions
 | Devuan Jessie (1)     | Yes     | No                      |
 | Devuan Ascii (2)      | Yes     | No                      |
 | Kali Linux            | Yes     | No                      |
+| Raspbian Stretch (9)  | TBD     | No                      |
+| Raspbian Buster (10)  | TBD     | No                      |
 | Ubuntu Bionic (18.04) | Yes     | No                      |
 
 Requirements
