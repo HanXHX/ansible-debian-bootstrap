@@ -1,9 +1,9 @@
-Ansible Debian/Devuan/Kali/Ubuntu bootstrap
-===========================================
+Ansible Debian/Devuan/Kali/Ubuntu/Raspbian bootstrap
+====================================================
 
 [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) [![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
 
-This role bootstraps Debian/Devuan/Kali/Ubuntu server:
+This role bootstraps Debian/Devuan/Kali/Ubuntu/Raspbian hosts:
 
 - Configure APT (sources.list)
 - Install minimal packages (vim, htop...)
@@ -18,17 +18,17 @@ This role bootstraps Debian/Devuan/Kali/Ubuntu server:
 
 Supported versions
 
-| OS                    | Working | Stable (active support) |
-| --------------------- | ------- | ----------------------- |
-| Debian Jessie (8)     | Yes     | Yes                     |
-| Debian Stretch (9)    | Yes     | Yes                     |
-| Debian Buster (10)    | Yes     | Yes                     |
-| Devuan Jessie (1)     | Yes     | No                      |
-| Devuan Ascii (2)      | Yes     | No                      |
-| Kali Linux            | Yes     | No                      |
-| Raspbian Stretch (9)  | TBD     | No                      |
-| Raspbian Buster (10)  | TBD     | No                      |
-| Ubuntu Bionic (18.04) | Yes     | No                      |
+| OS                    | Working      | Stable (active support) |
+| --------------------- | -------      | ----------------------- |
+| Debian Jessie (8)     | Yes          | Yes                     |
+| Debian Stretch (9)    | Yes          | Yes                     |
+| Debian Buster (10)    | Yes          | Yes                     |
+| Devuan Jessie (1)     | Yes          | No                      |
+| Devuan Ascii (2)      | Yes          | No                      |
+| Kali Linux            | Partial      | No                      |
+| Raspbian Stretch (9)  | Experimental | No                      |
+| Raspbian Buster (10)  | Experimental | No                      |
+| Ubuntu Bionic (18.04) | Yes          | No                      |
 
 Requirements
 ------------
