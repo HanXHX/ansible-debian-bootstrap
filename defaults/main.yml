@@ -34,6 +34,7 @@ dbs_set_apt: true
 # -------------------------
 dbs_alternative_editor: '/usr/bin/vim.basic'
 dbs_alternative_awk: '/usr/bin/gawk'
+dbs_alternative_netcat: '/bin/nc.openbsd'
 
 # -------------------------
 # NTPd configuration

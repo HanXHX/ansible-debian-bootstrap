@@ -1,9 +1,19 @@
 ---
 
-- name: UPDATE-ALTERNATIVE | Vim is my main editor
+- name: UPDATE-ALTERNATIVE | Editor
   alternatives:
     name: editor
     path: "{{ dbs_alternative_editor }}"
+
+- name: UPDATE-ALTERNATIVE | Awk
+  alternatives:
+    name: awk
+    path: "{{ dbs_alternative_awk }}"
+
+- name: UPDATE-ALTERNATIVE | Netcat
+  alternatives:
+    name: nc
+    path: "{{ dbs_alternative_netcat }}"
 
 - name: UPDATE-ALTERNATIVE | Gawk (GNU awk) is the best
   alternatives:

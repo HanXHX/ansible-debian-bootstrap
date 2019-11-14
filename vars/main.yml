@@ -28,7 +28,8 @@ dbs_packages:
   - make
   - most
   - mutt
-  - netcat
+  - netcat-openbsd
+  - netcat-traditional
   - nmap
   - nmon
   - parallel
