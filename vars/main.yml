@@ -33,6 +33,7 @@ dbs_packages:
   - nmap
   - nmon
   - parallel
+  - psmisc
   - pv
   - python-pip
   - python-pycurl
