@@ -14,7 +14,6 @@ dbs_packages:
   - gawk
   - gnupg
   - git
-  - glances
   - hdparm
   - htop
   - hping3
