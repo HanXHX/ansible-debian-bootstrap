@@ -34,8 +34,8 @@ dbs_packages:
   - parallel
   - psmisc
   - pv
-  - python-pip
-  - python-pycurl
+  - python{% if ansible_python_version is version('3', '>=') %}3{% endif %}-pip
+  - python{% if ansible_python_version is version('3', '>=') %}3{% endif %}-pycurl
   - pwgen
   - reptyr
   - rsyslog
