@@ -1,11 +1,9 @@
 ---
 
-# Doc: https://wiki.debian.org/HowTo/ChangeHostname
-# TODO : notify other services
-
 - name: HOSTNAME
   hostname:
     name: "{{ dbs_hostname }}"
+    use: "{% if dbs_hostname_use_strategy is not none %}{{ dbs_hostname_use_strategy }}{% elif ansible_service_mgr == 'systemd' %}systemd{% else %}debian{% endif %}"
   notify: restart rsyslog
   register: change_hostname
 
@@ -15,13 +13,3 @@
     dest: /etc/hosts
   notify: restart rsyslog
   when: dbs_clean_hosts
-
-# Don't work on Jessie
-#- name: SERVICE | Force hostname.sh start
-#  service: name=hostname.sh state=started
-#  when: change_hostname.changed
-
-# Dangerous...
-#- name: SERVICE | Force networking restart
-#  service: name=networking state=restarted
-#  when: change_hostname.changed

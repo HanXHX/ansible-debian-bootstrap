@@ -12,10 +12,6 @@
 - name: INCLUDE | Prepare system
   include: prepare.yml
 
-- name: INCLUDE | Set hostname
-  include: hostname.yml
-  when: dbs_set_hostname and not dbs_is_docker
-
 - name: INCLUDE | Configure APT
   include: apt.yml
 
@@ -28,6 +24,10 @@
     ansible_distribution == 'Debian' and
     not dbs_use_systemd and
     not dbs_is_docker
+
+- name: INCLUDE | Set hostname
+  include: hostname.yml
+  when: dbs_set_hostname and not dbs_is_docker
 
 - name: TIMEZONE | Set
   timezone:

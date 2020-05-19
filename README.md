@@ -33,7 +33,7 @@ Supported versions
 Requirements
 ------------
 
-Min Ansible 2.5
+Min Ansible 2.9
 
 Role Variables
 --------------
@@ -58,6 +58,7 @@ Theses variables define hostname to configure APT (normal repo and backports):
 ### System configuration
 
 - `dbs_hostname`: system hostname
+- `dbs_hostname_use_strategy`: strategy used to set hostname check "use" in [hostname module](https://docs.ansible.com/ansible/latest/modules/hostname_module.html). You should update this var only if hostname fails (in LXC for example).
 - `dbs_default_locale`: default system locale
 - `dbs_locales`: list of installed locales
 - `dbs_timezone`: system timezone. If you need a "standard" timezone like UTC, you must use prefix "Etc/" (ex: "Etc/UTC")

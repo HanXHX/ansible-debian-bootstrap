@@ -10,6 +10,7 @@ dbs_repo_old: "{% if ansible_local | d() and ansible_local.apt_sources | d() and
 # System configuration
 # -------------------------
 dbs_hostname: 'debian-boostrap.local'
+dbs_hostname_use_strategy: null
 dbs_locales:
   - 'en_US.UTF-8'
 dbs_default_locale: 'en_US.UTF-8'
