@@ -1,33 +1,33 @@
 ---
+
 galaxy_info:
+  role_name: debian_bootstrap
+  namespace: HanXHX
   author: Emilien Mantel
-  description: Normalize and prepare a Debian/Devuan/Kali Linux server
+  description: Normalize and prepare a Debian/Devuan/Ubuntu Linux server
   company:
   license: GPLv2
-  min_ansible_version: 2.9
+  min_ansible_version: 2.11
   platforms:
-  - name: Debian
-    versions:
-    - jessie
-    - stretch
-    - buster
-  - name: Devuan
-    versions:
-    - jessie
-    - ascii
-  - name: Kali Linux
-    versions:
-    - rolling-kali
-  - name: Ubuntu
-    versions:
-    - bionic
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+        - bullseye
+    - name: Devuan
+      versions:
+        - ascii
+    - name: Ubuntu
+      versions:
+        - bionic
   galaxy_tags:
-  - networking
-  - packaging
-  - system
-  - debian
-  - apt
-  - alternatives
-  - editor
-  - ntp
+    - networking
+    - packaging
+    - system
+    - debian
+    - apt
+    - alternatives
+    - editor
+    - ntp
+
 dependencies: []

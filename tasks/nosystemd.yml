@@ -1,36 +1,32 @@
 ---
 
 - name: APT | Install sysvinit
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ dbs_sysvinit_packages }}"
     state: present
   register: sysv_installed
 
 - block:
 
-  - name: SHELL | Reboot machine
-    shell: sleep 2 && shutdown -r now "Ansible updates triggered"
-    async: 1
-    poll: 0
-    ignore_errors: true
+    - name: REBOOT
+      ansible.builtin.reboot:
+        timeout: 3600
 
-  - name: WAIT_FOR_CONNECTION | Wait while rebooting...
-    wait_for_connection:
-      delay: 30
-      timeout: 600
-
-  - name: SETUP
-    action: setup
+    - name: SETUP
+      ansible.builtin.setup:
 
   when: sysv_installed.changed
 
 - name: APT | Purge systemd
-  apt:
+  ansible.builtin.apt:
     pkg: systemd
     state: absent
-    purge: yes
+    purge: true
 
 - name: COPY | Configure APT no extra packages
-  copy:
+  ansible.builtin.copy:
     src: etc/apt/preferences.d/systemd
     dest: /etc/apt/preferences.d/systemd
+    mode: 0644
+    owner: root
+    group: root

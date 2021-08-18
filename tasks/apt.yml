@@ -1,81 +1,85 @@
 ---
 
 - name: COPY | Configure APT no extra packages
-  copy:
+  ansible.builtin.copy:
     src: etc/apt/apt.conf.d/90noextrapackages
     dest: /etc/apt/apt.conf.d/90noextrapackages
+    mode: 0644
+    owner: root
+    group: root
 
 # We MUST update cache... Ansible auto install python-apt
 - name: APT | Update
-  apt:
-    update_cache: yes
+  ansible.builtin.apt:
+    update_cache: true
     cache_valid_time: 3600
   changed_when: false
 
 - block:
+    - name: FILE | Delete default repository (sources.list)
+      ansible.builtin.file:
+        path: /etc/apt/sources.list
+        state: absent
 
-  - name: FILE | Delete default repository (sources.list)
-    file:
-      path: /etc/apt/sources.list
-      state: absent
+    - name: APT_REPOSITORY | Delete old deb repo
+      ansible.builtin.apt_repository:
+        repo: "deb {{ item }}"
+        state: absent
+      when: item not in dbs_repo_new
+      loop: "{{ dbs_repo_old }}"
 
-  - name: APT_REPOSITORY | Delete old deb repo
-    apt_repository:
-      repo: "deb {{ item }}"
-      state: absent
-    when: item not in dbs_repo_new
-    with_items: "{{ dbs_repo_old }}"
+    - name: APT_REPOSITORY | Delete old deb-src repo
+      ansible.builtin.apt_repository:
+        repo: "deb-src {{ item }}"
+        state: absent
+      when: item not in dbs_repo_new
+      loop: "{{ dbs_repo_old }}"
 
-  - name: APT_REPOSITORY | Delete old deb-src repo
-    apt_repository:
-      repo: "deb-src {{ item }}"
-      state: absent
-    when: item not in dbs_repo_new
-    with_items: "{{ dbs_repo_old }}"
+    - name: APT_REPOSITORY | Add repositories
+      ansible.builtin.apt_repository:
+        repo: "deb {{ item }}"
+        state: present
+        update_cache: false
+      register: ar
+      loop: "{{ dbs_repo_new }}"
 
-  - name: APT_REPOSITORY | Add repositories
-    apt_repository:
-      repo: "deb {{ item }}"
-      state: present
-      update_cache: no
-    register: ar
-    with_items: "{{ dbs_repo_new }}"
+    - name: APT_REPOSITORY | Add src repositories
+      ansible.builtin.apt_repository:
+        repo: "deb-src {{ item }}"
+        state: "{{ 'present' if dbs_apt_use_src else 'absent' }}"
+        update_cache: false
+      register: ars
+      loop: "{{ dbs_repo_new }}"
 
-  - name: APT_REPOSITORY | Add src repositories
-    apt_repository:
-      repo: "deb-src {{ item }}"
-      state: "{{ 'present' if dbs_apt_use_src else 'absent' }}"
-      update_cache: no
-    register: ars
-    with_items: "{{ dbs_repo_new }}"
+    - name: COPY | Manage current repositories
+      ansible.builtin.copy:
+        content: "{ \"dbs_repo_old\": {{ dbs_repo_new | to_json }} }"
+        dest: /etc/ansible/facts.d/apt_sources.fact
+        mode: 0644
+        owner: root
+        group: root
 
-  - name: COPY | Manage current repositories
-    copy:
-      content: "{ \"dbs_repo_old\": {{ dbs_repo_new | to_json }} }"
-      dest: /etc/ansible/facts.d/apt_sources.fact
-
-  - name: APT | Update cache if necessary
-    apt: update_cache=yes
-    when: ar.changed or ars.changed
-    tags:
-      - skip_ansible_lint
+    - name: APT | Update cache if necessary
+      ansible.builtin.apt:
+        update_cache: true
+      when: ar.changed or ars.changed
 
   when: dbs_set_apt
 
 - name: APT | Uninstall packages
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ dbs_uninstall_packages }}"
     state: absent
 
 - name: APT | Install few packages
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ lookup('flattened', dbs_packages, dbs_distro_packages) }}"
     state: present
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
 
 - name: APT | Install Intel Microcode if needed
-  apt:
+  ansible.builtin.apt:
     pkg: intel-microcode
     state: present
     default_release: '{{ dbs_microcode_apt_distribution }}'
@@ -84,7 +88,7 @@
     ansible_architecture == 'x86_64'
 
 - name: APT | Install AMD Microcode if needed
-  apt:
+  ansible.builtin.apt:
     pkg: amd64-microcode
     state: present
     default_release: '{{ dbs_microcode_apt_distribution }}'

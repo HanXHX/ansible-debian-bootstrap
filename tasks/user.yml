@@ -1,15 +1,14 @@
 ---
 
 - name: GROUP | Add groups to the system
-  group:
+  ansible.builtin.group:
     name: "{{ item.name }}"
     system: "{{ item.system | default('no') }}"
-  with_items:
-    - "{{ dbs_groups }}"
+  loop: "{{ dbs_groups }}"
   when: item.state is not defined or item.state == 'present'
 
 - name: USER | Add users to the system
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     shell: "{{ item.shell | default(omit) }}"
     comment: "{{ item.comment | default('') }}"
@@ -23,14 +22,14 @@
   with_items: "{{ dbs_users }}"
 
 - name: GROUP | Delete groups to the system
-  group:
+  ansible.builtin.group:
     name: "{{ item.name }}"
     state: absent
   with_items: "{{ dbs_groups }}"
   when: item.state is defined and item.state == 'absent'
 
 - name: USER | Add to group
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     group: "{{ item.group }}"
   with_items: "{{ dbs_users }}"
@@ -39,7 +38,7 @@
     (item.state is not defined or item.state == 'present')
 
 - name: AUTHORIZED_KEY | Install SSH public key to system users
-  authorized_key:
+  ansible.posix.authorized_key:
     user: "{{ item.0.name }}"
     key: "{{ item.1 }}"
   with_subelements:
@@ -50,7 +49,7 @@
   when: item.0.state is not defined or item.0.state == 'present'
 
 - name: TEMPLATE | Create sudoers file
-  template:
+  ansible.builtin.template:
     src: etc/sudoers.d/ansible.j2
     dest: /etc/sudoers.d/ansible
     mode: 0440

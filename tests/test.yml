@@ -8,7 +8,7 @@
     dbs_groups:
       - name: 'administrator'
       - name: 'superdaemon'
-        system: yes
+        system: true
       - name: 'regis'
         state: 'absent'
     dbs_users:
@@ -24,7 +24,7 @@
         clear_password: '1a2b3c'
         update_password: 'on_create'
       - name: 'gunther'
-        password: '$6$fFXafeiTssSG3LX3$/ji4TrTVWJwQdgKeLs69OtmXbpe6faCw7XCO5xzHSv3FqVdHA0qjgs01ZovYQBt./5vH5eUVT7XeOpb0PRtQh/' # tralala
+        password: '$6$fFXafeiTssSG3LX3$/ji4TrTVWJwQdgKeLs69OtmXbpe6faCw7XCO5xzHSv3FqVdHA0qjgs01ZovYQBt./5vH5eUVT7XeOpb0PRtQh/'   # tralala
         shell: '/bin/bash'
       - name: 'regis'
         state: 'absent'
@@ -36,12 +36,12 @@
     - ../../
   post_tasks:
     - name: -- TEST -- COMMAND | Get timezone
-      command: cat /etc/timezone
+      ansible.builtin.command: cat /etc/timezone
       changed_when: false
       register: ntz
     - name: -- TEST -- ASSERT | We have good timezone
-      assert:
+      ansible.builtin.assert:
         that: "ntz.stdout == dbs_timezone"
     - name: -- TEST -- COMMAND | Date
-      command: date
+      ansible.builtin.command: date
       changed_when: false

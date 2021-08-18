@@ -1,12 +1,18 @@
+---
+
 env:
-  - PLATFORM='docker-debian-jessie'  ANSIBLE_VERSION='ansible>=2.9,<2.10'
-  - PLATFORM='docker-debian-stretch' ANSIBLE_VERSION='ansible>=2.9,<2.10'
-  - PLATFORM='docker-debian-buster'  ANSIBLE_VERSION='ansible>=2.9,<2.10'
-  - PLATFORM='docker-ubuntu-bionic'  ANSIBLE_VERSION='ansible>=2.9,<2.10'
+  - PLATFORM='docker-debian-stretch'  ANSIBLE_VERSION='>=2.11,<2.12'
+  - PLATFORM='docker-debian-bullseye' ANSIBLE_VERSION='>=2.11,<2.12'
+  - PLATFORM='docker-debian-buster'   ANSIBLE_VERSION='>=2.11,<2.12'
+  - PLATFORM='docker-ubuntu-bionic'   ANSIBLE_VERSION='>=2.11,<2.12'
 
-sudo: required
+jobs:
+  allow_failures:
+    - env: PLATFORM='docker-debian-bullseye' ANSIBLE_VERSION='>=2.11,<2.12'
 
-dist: trusty
+os:
+  - linux
+dist: focal
 
 language: python
 python:
@@ -17,11 +23,14 @@ services:
   - docker
 
 before_install:
+  - sudo apt-get -q update
   - wget https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.deb
   - sudo dpkg -i vagrant_2.0.1_x86_64.deb
+  - sudo apt-get install -y yamllint
 
 install:
-  - pip install "$ANSIBLE_VERSION"
+  - pip install "ansible-core$ANSIBLE_VERSION"
+  - ansible-galaxy collection install ansible.posix
 
 script:
   - VAGRANT_DEFAULT_PROVIDER=docker vagrant up $PLATFORM
@@ -31,6 +40,14 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
   - VAGRANT_DEFAULT_PROVIDER=docker vagrant status
+  - >
+    yaml-lint .
+    && (echo 'YAML lint test: pass' && exit 0)
+    || (echo 'YAML lint test: fail' && exit 1)
+  - >
+    ansible-lint -v tests/test.yml
+    && (echo 'Ansible lint test: pass' && exit 0)
+    || (echo 'Ansible lint test: fail' && exit 1)
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
