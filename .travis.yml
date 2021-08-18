@@ -16,8 +16,7 @@ dist: focal
 
 language: python
 python:
-  - 2.7
-  - 3.6
+  - 3.8
 
 services:
   - docker
@@ -41,7 +40,7 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
   - VAGRANT_DEFAULT_PROVIDER=docker vagrant status
   - >
-    yaml-lint .
+    yamllint .
     && (echo 'YAML lint test: pass' && exit 0)
     || (echo 'YAML lint test: fail' && exit 1)
   - >
