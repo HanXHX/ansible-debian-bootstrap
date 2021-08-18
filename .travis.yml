@@ -23,10 +23,13 @@ services:
 
 before_install:
   - sudo apt-get -q update
-  - sudo apt-get install -y vagrant yamllint
+  - sudo apt-get install -y yamllint
+  - sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.deb
+  - sudo dpkg -i vagrant_2.2.7_x86_64.deb
 
 install:
-  - pip install "ansible-core$ANSIBLE_VERSION"
+  - sudo pip install "ansible-core$ANSIBLE_VERSION"
+  - sudo pip install ansible-lint 
   - ansible-galaxy collection install ansible.posix
 
 script:
