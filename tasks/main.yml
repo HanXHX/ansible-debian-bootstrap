@@ -30,7 +30,7 @@
   when: dbs_set_hostname and not dbs_is_docker
 
 - name: TIMEZONE | Set
-  ansible.builtin.timezone:
+  community.general.timezone:
     name: "{{ dbs_timezone }}"
   when: dbs_set_timezone
   notify:
