@@ -33,7 +33,7 @@ before_install:
 install:
   - sudo pip install "ansible-core$ANSIBLE_VERSION"
   - sudo pip install ansible-lint
-  - ansible-galaxy collection install ansible.posix
+  - ansible-galaxy collection install ansible.posix community.general
 
 script:
   - VAGRANT_DEFAULT_PROVIDER=docker vagrant up $PLATFORM
