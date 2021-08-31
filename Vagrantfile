@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
       end
 
       if opts[:name].include? "bullseye"
-        m.vm.provision "shell", inline: "apt-get update -qq && apt-get -y dist-upgrade"
+        m.vm.provision "shell", inline: "[ -f '/root/first_provision' ] || (apt-get update -qq && apt-get -y dist-upgrade && touch /root/first_provision)"
       end
 
       m.vm.provision "ansible" do |ansible|
