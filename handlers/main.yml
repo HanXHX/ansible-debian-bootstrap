@@ -8,6 +8,7 @@
 - name: restart ntp
   ansible.builtin.service:
     name: ntp
+    state: restarted
 
 - name: restart cron
   ansible.builtin.service:
