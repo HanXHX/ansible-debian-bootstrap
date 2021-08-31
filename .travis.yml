@@ -11,7 +11,7 @@ env:
 
 jobs:
   allow_failures:
-    - env: PLATFORM='docker-debian-bullseye' ANSIBLE_VERSION='>=2.11,<2.12'
+    - env: PLATFORM='docker-ubuntu-bionic'   ANSIBLE_VERSION='>=2.11,<2.12'
 
 os:
   - linux
