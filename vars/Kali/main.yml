@@ -1,5 +1,0 @@
----
-dbs_distro_packages: []
-dbs_apt_default_host: 'http.kali.org'
-dbs_repo_new:
-  - "http://{{ dbs_apt_default_host }}/kali {{ ansible_distribution_release }} {{ dbs_apt_components }}"

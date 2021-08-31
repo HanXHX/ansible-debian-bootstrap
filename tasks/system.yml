@@ -1,29 +1,24 @@
 ---
 
-- name: UPDATE-ALTERNATIVE | Editor
-  alternatives:
-    name: editor
-    path: "{{ dbs_alternative_editor }}"
-
-- name: UPDATE-ALTERNATIVE | Awk
-  alternatives:
-    name: awk
-    path: "{{ dbs_alternative_awk }}"
-
-- name: UPDATE-ALTERNATIVE | Netcat
-  alternatives:
-    name: nc
-    path: "{{ dbs_alternative_netcat }}"
-
-- name: UPDATE-ALTERNATIVE | Gawk (GNU awk) is the best
-  alternatives:
-    name: awk
-    path: "{{ dbs_alternative_awk }}"
+- name: ALTERNATIVES | Set commons
+  community.general.alternatives:
+    name: "{{ item.name }}"
+    path: "{{ item.path }}"
+  loop:
+    - name: "awk"
+      path: "{{ dbs_alternative_awk }}"
+    - name: "editor"
+      path: "{{ dbs_alternative_editor }}"
+    - name: "nc"
+      path: "{{ dbs_alternative_netcat }}"
 
 - name: COPY | dotfiles for root
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/root/.{{ item }}"
+    mode: 0640
+    owner: root
+    group: root
   with_items:
     - "bashrc"
     - "vimrc"
@@ -32,7 +27,7 @@
   when: dbs_use_dotfiles
 
 - name: SYSCTL | Tuning
-  sysctl:
+  ansible.posix.sysctl:
     name: "{{ item.key }}"
     value: "{{ item.value }}"
     sysctl_file: /etc/sysctl.d/ansible.conf

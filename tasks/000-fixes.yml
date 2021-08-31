@@ -1,30 +1,25 @@
 ---
 
-- name: SET_FACT | Bypass https://github.com/ansible/ansible/issues/19874
-  set_fact:
-    ansible_distribution_release: 'buster'
-  when: ansible_facts.distribution_major_version == "buster/sid"
+- name: FAIL | Check OS name
+  ansible.builtin.fail:
+    msg: 'Cannot get OS version name. Unstable {{ ansible_distribution }} release? Please try `apt-get dist-upgrade`.'
+  when: ansible_distribution_release == 'n/a' or ansible_distribution_release == 'NA'
 
 - block:
 
-  - name: COMMAND | Get Devuan release
-    command: cat /etc/devuan_version
-    register: osr
-    changed_when: false
+    - name: COMMAND | Get Devuan release
+      ansible.builtin.command: cat /etc/devuan_version
+      register: osr
+      changed_when: false
 
-  - name: SET_FACT | Fix Devuan fact
-    set_fact:
-      ansible_distribution: "Devuan"
-      ansible_distribution_release: "{{ osr.stdout }}"
+    - name: SET_FACT | Fix Devuan fact
+      ansible.builtin.set_fact:
+        ansible_distribution: "Devuan"
+        ansible_distribution_release: "{{ osr.stdout }}"
 
   when: ansible_distribution is match ('^[dD]evuan')
 
-- name: SET_FACT | Fix Kali fact
-  set_fact:
-    ansible_distribution: "Kali"
-  when: ansible_distribution is match ('^[Kk]ali')
-
 - name: SET_FACT | Fix Raspbian fact
-  set_fact:
+  ansible.builtin.set_fact:
     ansible_distribution: 'Raspbian'
   when: (ansible_lsb.id is defined) and (ansible_lsb.id is match ('^[Rr]aspbian'))

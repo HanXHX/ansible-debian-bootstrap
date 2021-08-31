@@ -1,15 +1,18 @@
 ---
 
 - name: HOSTNAME
-  hostname:
+  ansible.builtin.hostname:
     name: "{{ dbs_hostname }}"
     use: "{% if dbs_hostname_use_strategy is not none %}{{ dbs_hostname_use_strategy }}{% elif ansible_service_mgr == 'systemd' %}systemd{% else %}debian{% endif %}"
   notify: restart rsyslog
   register: change_hostname
 
 - name: TEMPLATE | Cleanup /etc/hosts
-  template:
+  ansible.builtin.template:
     src: etc/hosts.j2
     dest: /etc/hosts
+    mode: 0644
+    owner: root
+    group: root
   notify: restart rsyslog
   when: dbs_clean_hosts

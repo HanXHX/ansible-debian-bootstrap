@@ -1,47 +1,48 @@
 ---
 
-- name: INCLUDE | Some fixes
-  include: 000-fixes.yml
+- name: IMPORT_TASKS | Some fixes
+  ansible.builtin.import_tasks: 000-fixes.yml
 
 - name: INCLUDE_VARS | OS
-  include_vars: "{{ ansible_distribution }}/main.yml"
+  ansible.builtin.include_vars: "{{ ansible_distribution }}/main.yml"
 
 - name: INCLUDE_VARS | Related to OS version
-  include_vars: "{{ ansible_distribution }}/{{ ansible_distribution_release }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_distribution }}/{{ ansible_distribution_release }}.yml"
 
-- name: INCLUDE | Prepare system
-  include: prepare.yml
+- name: IMPORT_TASKS | Prepare system
+  ansible.builtin.import_tasks: prepare.yml
 
-- name: INCLUDE | Configure APT
-  include: apt.yml
+- name: IMPORT_TASKS | Configure APT
+  ansible.builtin.import_tasks: apt.yml
 
-- name: INCLUDE | Manage system users
-  include: user.yml
+- name: IMPORT_TASKS | Manage system users
+  ansible.builtin.import_tasks: user.yml
 
-- name: INCLUDE | Kick systemd
-  include: nosystemd.yml
+- name: INCLUDE_TASKS | Kick systemd
+  ansible.builtin.include_tasks: nosystemd.yml
   when: >
     ansible_distribution == 'Debian' and
     not dbs_use_systemd and
     not dbs_is_docker
 
-- name: INCLUDE | Set hostname
-  include: hostname.yml
+- name: INCLUDE_TASKS | Set hostname
+  ansible.builtin.include_tasks: hostname.yml
   when: dbs_set_hostname and not dbs_is_docker
 
 - name: TIMEZONE | Set
-  timezone:
+  community.general.timezone:
     name: "{{ dbs_timezone }}"
   when: dbs_set_timezone
-  notify: [ restart cron ]
+  notify:
+    - 'restart cron'
 
-- name: INCLUDE | Manage locales
-  include: locale.yml
+- name: INCLUDE_TASKS | Manage locales
+  ansible.builtin.include_tasks: locale.yml
   when: dbs_set_locale
 
-- name: INCLUDE | Install NTP damon
-  include: ntp.yml
+- name: INCLUDE_TASKS | Install NTP damon
+  ansible.builtin.include_tasks: ntp.yml
   when: dbs_set_ntp
 
-- name: INCLUDE | Misc system configuration
-  include: system.yml
+- name: IMPORT_TASKS | Misc system configuration
+  ansible.builtin.import_tasks: system.yml

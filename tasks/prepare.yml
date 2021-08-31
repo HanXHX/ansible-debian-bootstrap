@@ -1,10 +1,13 @@
 ---
 
 - name: FILE | Creates ansible facts.d
-  file:
+  ansible.builtin.file:
     path: /etc/ansible/facts.d
     state: directory
+    mode: 0755
+    owner: root
+    group: root
 
 - name: SET_FACT | Is docker?
-  set_fact:
+  ansible.builtin.set_fact:
     dbs_is_docker: "{{ false if ansible_virtualization_type is not defined or ansible_virtualization_type != 'docker' else true }}"

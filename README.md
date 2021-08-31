@@ -1,9 +1,9 @@
-Ansible Debian/Devuan/Kali/Ubuntu/Raspbian bootstrap
+Ansible Debian/Devuan/Ubuntu/Raspbian bootstrap
 ====================================================
 
-[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) [![Build Status](https://travis-ci.org/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://travis-ci.org/HanXHX/ansible-debian-bootstrap)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) [![Build Status](https://app.travis-ci.com/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://app.travis-ci.com/HanXHX/ansible-debian-bootstrap)
 
-This role bootstraps Debian/Devuan/Kali/Ubuntu/Raspbian hosts:
+This role bootstraps Debian/Devuan/Ubuntu/Raspbian hosts:
 
 - Configure APT (sources.list)
 - Install minimal packages (vim, htop...)
@@ -20,12 +20,10 @@ Supported versions
 
 | OS                    | Working      | Stable (active support) |
 | --------------------- | -------      | ----------------------- |
-| Debian Jessie (8)     | Yes          | Yes                     |
 | Debian Stretch (9)    | Yes          | Yes                     |
 | Debian Buster (10)    | Yes          | Yes                     |
-| Devuan Jessie (1)     | Yes          | No                      |
+| Debian Bullseye (11)  | Yes          | Yes                     |
 | Devuan Ascii (2)      | Yes          | No                      |
-| Kali Linux            | Partial      | No                      |
 | Raspbian Stretch (9)  | Experimental | No                      |
 | Raspbian Buster (10)  | Experimental | No                      |
 | Ubuntu Bionic (18.04) | Yes          | No                      |
@@ -33,7 +31,8 @@ Supported versions
 Requirements
 ------------
 
-Min Ansible 2.9
+- Ansible >= 2.11
+- Collections: [ansible.posix collection](https://galaxy.ansible.com/ansible/posix) / [community.general](https://galaxy.ansible.com/community/general)
 
 Role Variables
 --------------
