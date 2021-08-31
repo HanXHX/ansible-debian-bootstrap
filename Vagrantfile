@@ -75,6 +75,7 @@ Vagrant.configure("2") do |config|
         ansible.become = true
         ansible.extra_vars = opts[:vars]
         ansible.raw_arguments = ["-D"]
+        ansible.compatibility_mode = "2.0"
       end
     end
   end
