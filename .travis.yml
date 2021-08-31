@@ -27,8 +27,8 @@ services:
 before_install:
   - sudo apt-get -q update
   - sudo apt-get install -y yamllint
-  - sudo wget -nv https://releases.hashicorp.com/vagrant/$VAGRANT_VERSION/vagrant_$VAGRANT_VERSION_x86_64.deb
-  - sudo dpkg -i vagrant_$VAGRANT_VERSION_x86_64.deb
+  - sudo wget -nv https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb
+  - sudo dpkg -i vagrant_${VAGRANT_VERSION}_x86_64.deb
 
 install:
   - sudo pip install "ansible-core$ANSIBLE_VERSION"
