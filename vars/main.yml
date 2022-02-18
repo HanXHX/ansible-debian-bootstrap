@@ -9,7 +9,6 @@ dbs_packages:
   - cpanminus
   - curl
   - cron
-  - cron-apt
   - debconf-utils
   - debian-goodies
   - dnsutils
