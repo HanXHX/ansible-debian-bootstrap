@@ -34,10 +34,6 @@ Vagrant.configure("2") do |config|
         d.has_ssh = true
       end
 
-      if opts[:name].include? "bullseye"
-        m.vm.provision "shell", inline: "[ -f '/root/first_provision' ] || (apt-get update -qq && apt-get -y dist-upgrade && touch /root/first_provision)"
-      end
-
       m.vm.provision "ansible" do |ansible|
         ansible.playbook = "tests/test.yml"
         ansible.verbose = 'vv'
@@ -53,10 +49,6 @@ Vagrant.configure("2") do |config|
     config.vm.define opts[:name] do |m|
       if opts[:name].include? "devuan" or opts[:name].include? "ubuntu"
         m.vm.provision "shell", inline: "apt-get update -qq && apt-get -y install python"
-      end
-
-      if opts[:name].include? "bullseye"
-        m.vm.provision "shell", inline: "apt-get update -qq && apt-get -y dist-upgrade"
       end
 
       if opts[:name].include? "devuan"
