@@ -18,15 +18,16 @@ This role bootstraps Debian/Devuan/Ubuntu/Raspbian hosts:
 
 Supported versions
 
-| OS                    | Working      | Stable (active support) |
-| --------------------- | -------      | ----------------------- |
-| Debian Stretch (9)    | Yes          | Yes                     |
-| Debian Buster (10)    | Yes          | Yes                     |
-| Debian Bullseye (11)  | Yes          | Yes                     |
-| Devuan Ascii (2)      | Yes          | No                      |
-| Raspbian Stretch (9)  | Experimental | No                      |
-| Raspbian Buster (10)  | Experimental | No                      |
-| Ubuntu Bionic (18.04) | Yes          | No                      |
+| OS                     | Working      | Stable (active support) |
+| ---------------------- | -------      | ----------------------- |
+| Debian Stretch (9)     | Yes          | Yes                     |
+| Debian Buster (10)     | Yes          | Yes                     |
+| Debian Bullseye (11)   | Yes          | Yes                     |
+| Devuan Ascii (2)       | Yes          | No                      |
+| Raspbian Stretch (9)   | Experimental | No                      |
+| Raspbian Buster (10)   | Experimental | No                      |
+| Raspbian Bullseye (11) | Experimental | No                      |
+| Ubuntu Bionic (18.04)  | Yes          | No                      |
 
 Requirements
 ------------
