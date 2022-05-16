@@ -51,4 +51,5 @@ dbs_packages:
   - unzip
   - vim
 
+dbs_distro_packages: []
 dbs_sysvinit_packages: ["sysvinit-core", "sysvinit-utils"]

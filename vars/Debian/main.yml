@@ -1,11 +1,9 @@
 ---
-
 dbs_repo_new:
   - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }} {{ dbs_apt_components }}"
   - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-updates {{ dbs_apt_components }}"
   - "{{ dbs_repo_security if (ansible_distribution_version is version('11', '>=')) else dbs_repo_security_legacy }}"
   - "http://{{ dbs_apt_default_host }}/debian {{ ansible_distribution_release }}-backports {{ dbs_apt_components }}"
-
 # Security repo pattern from Debian 11
 dbs_repo_security: "http://security.debian.org/debian-security {{ ansible_distribution_release }}-security {{ dbs_apt_components }}"
 # Legacy security repo
