@@ -14,14 +14,18 @@ Vagrant.configure("2") do |config|
     { :name => "debian-bullseye-sysvinit", :box => "debian/bullseye64",  :vars => { dbs_use_systemd: false } },
     { :name => "devuan-ascii",             :box => "https://files.devuan.org/devuan_ascii/virtual/devuan_ascii_2.0.0_amd64_vagrant.box" },
     { :name => "raspbian-stretch",         :box => "gvfoster/raspbian",:vars => { dbs_use_systemd: true } },
-    { :name => "ubuntu-bionic",            :box => "ubuntu/bionic64",  :vars => { dbs_use_systemd: true  } },
+    { :name => "ubuntu-bionic",            :box => "ubuntu/bionic64",  :vars => { dbs_use_systemd: true } },
+    { :name => "ubuntu-focal",             :box => "ubuntu/focal64",  :vars => { dbs_use_systemd: true } },
+    { :name => "ubuntu-jammy",             :box => "ubuntu/jammy64",  :vars => { dbs_use_systemd: true } },
   ]
 
   conts = [
     { :name => "docker-debian-stretch",  :docker => "hanxhx/vagrant-ansible:debian9", :vars => {} },
     { :name => "docker-debian-buster",   :docker => "hanxhx/vagrant-ansible:debian10", :vars => {} },
     { :name => "docker-debian-bullseye", :docker => "hanxhx/vagrant-ansible:debian11", :vars => {} },
-    { :name => "docker-ubuntu-bionic",   :docker => "hanxhx/vagrant-ansible:ubuntu18.04", :vars => {} }
+    { :name => "docker-ubuntu-bionic",   :docker => "hanxhx/vagrant-ansible:ubuntu18.04", :vars => {} },
+    { :name => "docker-ubuntu-focal",    :docker => "hanxhx/vagrant-ansible:ubuntu20.04", :vars => {} },
+    { :name => "docker-ubuntu-jammy",    :docker => "hanxhx/vagrant-ansible:ubuntu22.04", :vars => {} }
   ]
 
   config.vm.network "private_network", type: "dhcp"

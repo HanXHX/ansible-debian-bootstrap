@@ -8,10 +8,14 @@ env:
     - PLATFORM='docker-debian-bullseye' ANSIBLE_VERSION='>=2.11,<2.12'
     - PLATFORM='docker-debian-buster'   ANSIBLE_VERSION='>=2.11,<2.12'
     - PLATFORM='docker-ubuntu-bionic'   ANSIBLE_VERSION='>=2.11,<2.12'
+    - PLATFORM='docker-ubuntu-focal'    ANSIBLE_VERSION='>=2.11,<2.12'
+    - PLATFORM='docker-ubuntu-jammy'    ANSIBLE_VERSION='>=2.11,<2.12'
 
 jobs:
   allow_failures:
     - env: PLATFORM='docker-ubuntu-bionic'   ANSIBLE_VERSION='>=2.11,<2.12'
+    - env: PLATFORM='docker-ubuntu-focal'    ANSIBLE_VERSION='>=2.11,<2.12'
+    - env: PLATFORM='docker-ubuntu-jammy'    ANSIBLE_VERSION='>=2.11,<2.12'
 
 os:
   - linux

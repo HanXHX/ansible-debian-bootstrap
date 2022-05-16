@@ -28,6 +28,8 @@ Supported versions
 | Raspbian Buster (10)   | Experimental | No                      |
 | Raspbian Bullseye (11) | Experimental | No                      |
 | Ubuntu Bionic (18.04)  | Yes          | No                      |
+| Ubuntu Focal (20.04)   | Experimental | No                      |
+| Ubuntu Jammy (22.04)   | Experimental | No                      |
 
 Requirements
 ------------
