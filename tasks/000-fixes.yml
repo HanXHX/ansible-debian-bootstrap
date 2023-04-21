@@ -5,7 +5,9 @@
     msg: 'Cannot get OS version name. Unstable {{ ansible_distribution }} release? Please try `apt-get dist-upgrade`.'
   when: ansible_distribution_release == 'n/a' or ansible_distribution_release == 'NA'
 
-- block:
+- name: BLOCK | Fixup Devuan facts
+  when: ansible_distribution is match ('^[dD]evuan')
+  block:
 
     - name: COMMAND | Get Devuan release
       ansible.builtin.command: cat /etc/devuan_version
@@ -17,7 +19,6 @@
         ansible_distribution: "Devuan"
         ansible_distribution_release: "{{ osr.stdout }}"
 
-  when: ansible_distribution is match ('^[dD]evuan')
 
 - name: SET_FACT | Fix Raspbian fact
   ansible.builtin.set_fact:
