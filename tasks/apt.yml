@@ -15,7 +15,10 @@
     cache_valid_time: 3600
   changed_when: false
 
-- block:
+- name: BLOCK | Manage apt sources if needed
+  when: dbs_set_apt
+  block:
+
     - name: FILE | Delete default repository (sources.list)
       ansible.builtin.file:
         path: /etc/apt/sources.list
@@ -64,7 +67,6 @@
         update_cache: true
       when: ar.changed or ars.changed
 
-  when: dbs_set_apt
 
 - name: APT | Uninstall packages
   ansible.builtin.apt:

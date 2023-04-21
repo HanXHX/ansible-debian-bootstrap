@@ -2,7 +2,7 @@
 
 galaxy_info:
   role_name: debian_bootstrap
-  namespace: HanXHX
+  namespace: hanxhx
   author: Emilien Mantel
   description: Normalize and prepare a Debian/Devuan/Ubuntu Linux server
   company:

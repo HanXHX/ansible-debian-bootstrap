@@ -6,7 +6,9 @@
     state: present
   register: sysv_installed
 
-- block:
+- name: BLOCK | Reboot if sysvinit installed
+  when: sysv_installed.changed  # noqa: no-handler
+  block:
 
     - name: REBOOT
       ansible.builtin.reboot:
@@ -15,7 +17,6 @@
     - name: SETUP
       ansible.builtin.setup:
 
-  when: sysv_installed.changed
 
 - name: APT | Purge systemd
   ansible.builtin.apt:
