@@ -1,0 +1,43 @@
+---
+
+name: ci
+'on':
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  yaml-lint:
+    name: YAML Lint
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Fetch code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependencies.
+        run: pip3 install yamllint
+
+      - name: Lint code.
+        run: |
+          yamllint .
+
+  ansible-lint:
+    name: Ansible Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fetch code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint-action@v6.15.0
