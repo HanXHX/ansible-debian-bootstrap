@@ -1,6 +1,7 @@
 ---
 
-- hosts: all
+- name: CI Tests
+  hosts: all
   vars:
     dbs_timezone: 'America/Havana'
     dbs_uninstall_packages:

@@ -1,4 +1,6 @@
 ---
 
+profile: 'production'
+
 enable_list:
   - fqcn-builtins
