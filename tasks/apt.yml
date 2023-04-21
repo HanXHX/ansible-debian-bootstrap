@@ -65,7 +65,7 @@
     - name: APT | Update cache if necessary
       ansible.builtin.apt:
         update_cache: true
-      when: ar.changed or ars.changed
+      when: ar.changed or ars.changed  # noqa: no-handler
 
 
 - name: APT | Uninstall packages

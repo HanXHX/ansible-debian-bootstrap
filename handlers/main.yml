@@ -22,11 +22,13 @@
 
 - name: update tzdata
   ansible.builtin.command: dpkg-reconfigure -f noninteractive tzdata
+  changed_when: true
 
 - name: locale-gen
   ansible.builtin.command: locale-gen
+  changed_when: true
 
-- name: reload networking
+- name: reload networking  # noqa: name[casing]
   ansible.builtin.service:
     name: networking
     state: reloaded

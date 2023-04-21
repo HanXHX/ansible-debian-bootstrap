@@ -5,9 +5,9 @@ galaxy_info:
   namespace: hanxhx
   author: Emilien Mantel
   description: Normalize and prepare a Debian/Devuan/Ubuntu Linux server
-  company:
+  company: TripleStack
   license: GPLv2
-  min_ansible_version: 2.11
+  min_ansible_version: '2.11'
   platforms:
     - name: Debian
       versions:
