@@ -3,11 +3,15 @@
 - name: IMPORT_TASKS | Some fixes
   ansible.builtin.import_tasks: 000-fixes.yml
 
-- name: INCLUDE_VARS | OS
-  ansible.builtin.include_vars: "{{ ansible_distribution }}/main.yml"
-
-- name: INCLUDE_VARS | Related to OS version
-  ansible.builtin.include_vars: "{{ ansible_distribution }}/{{ ansible_distribution_release }}.yml"
+- name: INCLUDE_VARS | OS specific variables
+  ansible.builtin.include_vars: "{{ vars_file_item }}"
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}/{{ ansible_distribution_release }}.yml'
+        - "{{ ansible_distribution }}/main.yml"
+  loop_control:
+    loop_var: vars_file_item
+  tags: always
 
 - name: IMPORT_TASKS | Prepare system
   ansible.builtin.import_tasks: prepare.yml
