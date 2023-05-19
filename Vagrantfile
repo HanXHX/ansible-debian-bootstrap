@@ -12,6 +12,8 @@ Vagrant.configure("2") do |config|
     { :name => "debian-buster-sysvinit",   :box => "debian/buster64",  :vars => { dbs_use_systemd: false } },
     { :name => "debian-bullseye",          :box => "debian/bullseye64",  :vars => { dbs_use_systemd: true  } },
     { :name => "debian-bullseye-sysvinit", :box => "debian/bullseye64",  :vars => { dbs_use_systemd: false } },
+    { :name => "debian-bookworm",          :box => "boxomatic/debian-12",  :vars => { dbs_use_systemd: true  } },
+    { :name => "debian-bookworm-sysvinit", :box => "boxomatic/debian-12",  :vars => { dbs_use_systemd: false } },
     { :name => "devuan-ascii",             :box => "https://files.devuan.org/devuan_ascii/virtual/devuan_ascii_2.0.0_amd64_vagrant.box" },
     { :name => "raspbian-stretch",         :box => "gvfoster/raspbian",:vars => { dbs_use_systemd: true } },
     { :name => "ubuntu-bionic",            :box => "ubuntu/bionic64",  :vars => { dbs_use_systemd: true } },

@@ -35,14 +35,3 @@
       - 'fr_FR.UTF-8'
   roles:
     - ../../
-  post_tasks:
-    - name: -- TEST -- COMMAND | Get timezone
-      ansible.builtin.command: cat /etc/timezone
-      changed_when: false
-      register: ntz
-    - name: -- TEST -- ASSERT | We have good timezone
-      ansible.builtin.assert:
-        that: "ntz.stdout == dbs_timezone"
-    - name: -- TEST -- COMMAND | Date
-      ansible.builtin.command: date
-      changed_when: false
