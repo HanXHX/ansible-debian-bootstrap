@@ -32,3 +32,4 @@ jobs:
         with:
           molecule_options: --base-config molecule/_shared/base.yml
           molecule_args: --scenario-name ${{ matrix.scenario }}
+          molecule_working_dir: "HanXHX/ansible-debian-bootstrap"
