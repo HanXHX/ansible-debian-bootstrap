@@ -1,7 +1,7 @@
 Ansible Debian/Devuan/Ubuntu/Raspbian bootstrap
 ====================================================
 
-[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) [![Build Status](https://app.travis-ci.com/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://app.travis-ci.com/HanXHX/ansible-debian-bootstrap)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/hanxhx/ansible-debian-bootstrap/molecule.yml?branch=master)
 
 This role bootstraps Debian/Devuan/Ubuntu/Raspbian hosts:
 
