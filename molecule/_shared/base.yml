@@ -32,6 +32,6 @@ provisioner:
     converge: ../_shared/converge.yml
 
 # TODO: Add this back in when we have a testinfra verifier
-#verifier:
-#  name: testinfra
-#  directory: ../_shared/tests
+# verifier:
+#   name: testinfra
+#   directory: ../_shared/tests
