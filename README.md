@@ -1,7 +1,7 @@
 Ansible Debian/Devuan/Ubuntu/Raspbian bootstrap
 ====================================================
 
-[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) [![Build Status](https://app.travis-ci.com/HanXHX/ansible-debian-bootstrap.svg?branch=master)](https://app.travis-ci.com/HanXHX/ansible-debian-bootstrap)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-HanXHX.debian_bootstrap-blue.svg)](https://galaxy.ansible.com/HanXHX/debian_bootstrap) ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/hanxhx/ansible-debian-bootstrap/molecule.yml?branch=master)
 
 This role bootstraps Debian/Devuan/Ubuntu/Raspbian hosts:
 
@@ -151,6 +151,34 @@ Due to Docker limitations, theses features are disabled:
 - Removing systemd
 - Setting hostname
 - Configure sysctl
+
+
+How to develop and test this role
+---------------------------------
+
+### Vagrant way
+
+Install vagrant + virtualbox or docker
+
+```commandline
+vagrant up debian-bullseye # with virtualbox
+vagrant up docker-debian-bullseye # with docker
+```
+
+### Molecule way
+
+Install:
+
+```commandline
+pip install molecule molecule[docker]
+```
+
+Run:
+
+```commandline
+molecule -vv -c molecule/_shared/base.yml converge -s ubuntu-22.04
+```
+
 
 License
 -------
