@@ -1,0 +1,37 @@
+---
+
+scenario:
+  test_sequence:
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - verify
+    - destroy
+dependency:
+  name: galaxy
+  options:
+    requirements-file: ../../requirements.yml
+driver:
+  name: docker
+role_name_check: 1
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      deprecation_warnings: false
+      callback_whitelist: timer,profile_tasks
+      fact_caching: jsonfile
+      fact_caching_connection: ./cache
+      forks: 100
+    connection:
+      pipelining: true
+  playbooks:
+    converge: ../_shared/converge.yml
+
+# TODO: Add this back in when we have a testinfra verifier
+#verifier:
+#  name: testinfra
+#  directory: ../_shared/tests

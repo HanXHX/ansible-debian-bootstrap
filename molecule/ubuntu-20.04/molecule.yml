@@ -1,0 +1,13 @@
+---
+
+platforms:
+  - name: ubuntu-20.04
+    image: dokken/ubuntu-20.04
+    command: /lib/systemd/systemd
+    dockerfile: ../_shared/Dockerfile.j2
+    capabilities:
+      - SYS_ADMIN
+    cgroupns_mode: host
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    privileged: true

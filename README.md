@@ -152,6 +152,34 @@ Due to Docker limitations, theses features are disabled:
 - Setting hostname
 - Configure sysctl
 
+
+How to develop and test this role
+---------------------------------
+
+### Vagrant way
+
+Install vagrant + virtualbox or docker
+
+```commandline
+vagrant up debian-bullseye # with virtualbox
+vagrant up docker-debian-bullseye # with docker
+```
+
+### Molecule way
+
+Install:
+
+```commandline
+pip install molecule molecule[docker]
+```
+
+Run:
+
+```commandline
+molecule -vv -c molecule/_shared/base.yml converge -s ubuntu-22.04
+```
+
+
 License
 -------
 

@@ -1,0 +1,12 @@
+---
+
+- name: Converge
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Include role
+      ansible.builtin.include_role:
+        name: "hanxhx.debian_bootstrap"
+  vars:
+    # Force SysVinit, since systemd won't work in a Docker container
+    ansible_service_mgr: "sysvinit"
