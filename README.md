@@ -24,6 +24,7 @@ Supported versions
 | Debian Buster (10)     | Yes          | Yes                     |
 | Debian Bullseye (11)   | Yes          | Yes                     |
 | Debian Bookworm (12)   | Yes          | Yes                     |
+| Debian Trixie (13)     | Experimental | No                      |
 | Devuan Ascii (2)       | Yes          | No                      |
 | Raspbian Stretch (9)   | Experimental | No                      |
 | Raspbian Buster (10)   | Experimental | No                      |
