@@ -3,3 +3,4 @@
 *.retry
 /ubuntu*.log
 /.idea
+/.ansible
