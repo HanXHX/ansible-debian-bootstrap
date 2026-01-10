@@ -1,0 +1,7 @@
+#
+# {{ ansible_managed }}
+#
+
+{% for h in dbs_ntp_hosts %}
+server {{ h }} iburst
+{% endfor %}

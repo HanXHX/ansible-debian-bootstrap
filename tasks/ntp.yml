@@ -2,7 +2,7 @@
 
 - name: ASSERT | validated package
   ansible.builtin.assert:
-    that: 'dbs_ntp_pkg == "openntpd" or dbs_ntp_pkg == "ntp"'
+    that: 'dbs_ntp_pkg == "openntpd" or dbs_ntp_pkg == "ntp" or dbs_ntp_pkg == "chrony"'
 
 - name: APT | Install NTP daemon
   ansible.builtin.apt:
@@ -28,3 +28,21 @@
     group: root
   notify: restart ntp
   when: dbs_ntp_pkg == 'ntp'
+
+- name: BLOCK | Setup Chrony
+  when: dbs_ntp_pkg == 'chrony'
+  block:
+    - name: TEMPLATE | Deploy Chrony configuration file
+      ansible.builtin.template:
+        src: etc/chrony/sources.d/__tpl.sources.j2
+        dest: /etc/chrony/sources.d/default.sources
+        mode: 0644
+        owner: root
+        group: root
+      notify: Reload chrony sources
+
+    - name: SERVICE | Ensure Chrony is started and enabled
+      ansible.builtin.service:
+        name: chrony
+        state: started
+        enabled: true
