@@ -10,6 +10,10 @@
     name: ntp
     state: restarted
 
+- name: Reload chrony sources
+  ansible.builtin.command: chronyc reload sources
+  changed_when: true
+
 - name: restart cron
   ansible.builtin.service:
     name: cron

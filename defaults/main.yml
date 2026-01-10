@@ -47,7 +47,7 @@ dbs_ntp_hosts:
   - '1.europe.pool.ntp.org'
   - '2.europe.pool.ntp.org'
   - '3.europe.pool.ntp.org'
-dbs_ntp_pkg: 'ntp'
+dbs_ntp_pkg: 'chrony'
 
 # -------------------------
 # Users/Groups

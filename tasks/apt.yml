@@ -29,14 +29,14 @@
         repo: "deb {{ item }}"
         state: absent
       when: item not in dbs_repo_new
-      loop: "{{ dbs_repo_old }}"
+      loop: "{{ dbs_repo_old | list }}"
 
     - name: APT_REPOSITORY | Delete old deb-src repo
       ansible.builtin.apt_repository:
         repo: "deb-src {{ item }}"
         state: absent
       when: item not in dbs_repo_new
-      loop: "{{ dbs_repo_old }}"
+      loop: "{{ dbs_repo_old | list }}"
 
     - name: APT_REPOSITORY | Add repositories
       ansible.builtin.apt_repository:
