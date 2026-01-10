@@ -170,7 +170,7 @@ vagrant up docker-debian-bullseye # with docker
 Install:
 
 ```commandline
-pip install molecule molecule[docker]
+pip install molecule molecule-plugins[docker] 
 ```
 
 Run:
